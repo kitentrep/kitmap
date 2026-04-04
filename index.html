@@ -72,66 +72,7 @@
       stroke-width: 2px;
     }
 
-    #sidebar {
-      width: 280px;
-      background: var(--panel);
-      border-left: 1px solid #ddd;
-      padding: 20px;
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
-      overflow-y: auto;
-    }
 
-    .info-card {
-      background: #f9f9f9;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid #eee;
-      margin-bottom: 15px;
-    }
-
-    h3 {
-      margin-top: 0;
-      color: #333;
-      border-bottom: 2px solid var(--orange);
-      padding-bottom: 8px;
-      font-size: 14px;
-    }
-
-    label {
-      font-size: 11px;
-      color: #999;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    #display-name {
-      width: 100%;
-      border: none;
-      background: transparent;
-      font-size: 18px;
-      font-weight: bold;
-      color: var(--orange);
-      outline: none;
-    }
-
-    .legend {
-      font-size: 12px;
-      color: #666;
-      line-height: 2;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .leg-sq {
-      width: 14px;
-      height: 14px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
 
     .modal {
       display: none;
@@ -496,40 +437,7 @@
     </div>
   </div>
 
-  <div id="sidebar">
-    <h3>キャンパスガイド</h3>
-    <div class="info-card">
-      <label>選択中の建物</label>
-      <input type="text" id="display-name" readonly value="選択なし" />
-      <p id="description" style="color: #666; font-size: 13px; margin-top: 10px">
-        建物をクリックしてください。
-      </p>
-    </div>
-    <div class="legend">
-      <div class="legend-item">
-        <div class="leg-sq" style="background: #f66c28"></div>
-        建物
-      </div>
-      <div class="legend-item">
-        <div class="leg-sq" style="background: #d9d9d9"></div>
-        道路
-      </div>
-      <div class="legend-item">
-        <div class="leg-sq" style="background: #f5b916"></div>
-        渡り廊下
-      </div>
-      <div class="legend-item">
-        <div class="leg-sq" style="background: black"></div>
-        案内板（施設マーカー）
-      </div>
-      <p style="margin-top: 10px; font-size: 11px; color: #999">
-        🚲 駐輪場 &nbsp; P 駐車場<br />
-        🚌 バス停 &nbsp; ✉ 郵便局<br />
-        🛍 コンビニ &nbsp; 🍽 食堂<br />
-        🚬 喫煙所
-      </p>
-    </div>
-  </div>
+
 
   <!-- モーダル要素 -->
   <div id="modal" class="modal">
@@ -683,10 +591,6 @@
           targetPath.onclick = function (e) {
             e.stopPropagation();
             const name = kitFullNames[id] || (isBuilding ? "建物 " + id : "案内板 " + id);
-            document.getElementById("display-name").value = name;
-            document.getElementById("description").innerText =
-              name + " を選択しました。";
-
             document.getElementById("modal-title").innerText = name;
             document.getElementById("modal-description").innerText = name + " の詳細情報です。";
             document.getElementById("modal").classList.add("show");
