@@ -69,7 +69,8 @@
     }
 
     .building-label {
-      font-size: 13.2px;
+      font-size: 26px;
+      /* 約2倍 (元13.2px) */
       font-weight: bold;
       fill: #fff;
       pointer-events: none;
@@ -77,7 +78,7 @@
       dominant-baseline: central;
       paint-order: stroke;
       stroke: rgba(0, 0, 0, 0.3);
-      stroke-width: 2px;
+      stroke-width: 3px;
     }
 
 
@@ -87,14 +88,11 @@
       z-index: 1000;
       left: 0;
       bottom: 0;
-      /* 下に固定 */
       width: 100%;
-      height: 25vh;
-      /* 画面の約1/4 */
+      height: 35vh;
+      /* 少し高さを増やして大きな文字に対応 */
       background-color: transparent;
-      /* 地図が見えるように透明 */
       pointer-events: none;
-      /* 下の地図をクリック可能に */
       align-items: flex-end;
       justify-content: center;
     }
@@ -105,7 +103,7 @@
 
     .modal-content {
       background-color: #fff;
-      padding: 35px 25px 40px 25px;
+      padding: 40px 30px 50px 30px;
       border: none;
       width: 100%;
       height: 100%;
@@ -117,22 +115,21 @@
       transform: translateY(100%);
       transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       pointer-events: auto;
-      /* モーダル内は操作可能 */
     }
 
     .modal.show .modal-content {
       transform: translateY(0);
     }
 
-    /* モーダルの上のつまみ棒（ボトムシートらしさを出すため） */
+    /* モーダルの上のつまみ棒 */
     .modal-content::before {
       content: "";
       position: absolute;
-      top: 10px;
+      top: 15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 40px;
-      height: 5px;
+      width: 60px;
+      height: 6px;
       background-color: #e0e0e0;
       border-radius: 3px;
     }
@@ -142,12 +139,12 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      font-size: 32px;
-      /* 少し大きく */
+      font-size: 40px;
+      /* さらに大きく */
       font-weight: bold;
       cursor: pointer;
-      width: 44px;
-      height: 44px;
+      width: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -157,27 +154,20 @@
       color: #333;
     }
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-    }
-
     #modal-title {
       margin-top: 0;
       color: #333;
-      font-size: 28px;
-      /* 大きく */
+      font-size: 48px;
+      /* 約2倍 (元24px付近) */
       font-weight: bold;
     }
 
     #modal-description {
-      color: #444;
-      /* 少し濃く */
-      font-size: 18px;
-      /* 大きく */
-      margin-top: 20px;
-      line-height: 1.6;
+      color: #333;
+      font-size: 32px;
+      /* 約2倍 (元14-18px) */
+      margin-top: 25px;
+      line-height: 1.4;
     }
   </style>
 </head>
@@ -645,94 +635,94 @@
 
             if (id === "郵便局") {
               descHTML += `
-                <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 12px; text-align: center;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 24px; text-align: center;">
                   <tr style="background: #f66c28; color: white;">
-                    <th style="padding: 6px; border: 1px solid #ddd;"></th>
-                    <th style="padding: 6px; border: 1px solid #ddd;">平日</th>
-                    <th style="padding: 6px; border: 1px solid #ddd;">土曜日</th>
-                    <th style="padding: 6px; border: 1px solid #ddd;">日曜日・休日</th>
+                    <th style="padding: 12px; border: 1px solid #ddd;"></th>
+                    <th style="padding: 12px; border: 1px solid #ddd;">平日</th>
+                    <th style="padding: 12px; border: 1px solid #ddd;">土曜日</th>
+                    <th style="padding: 12px; border: 1px solid #ddd;">日曜日・休日</th>
                   </tr>
                   <tr>
-                    <td style="padding: 6px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#cc0000; color:white; padding:2px 4px; border-radius:2px; font-size:10px; margin-right:4px;">郵便</span>郵便窓口</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">9:00〜17:00</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#cc0000; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">郵便</span>郵便窓口</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:00</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
                   </tr>
                   <tr>
-                    <td style="padding: 6px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:2px 4px; border-radius:2px; font-size:10px; margin-right:4px;">貯金</span>貯金窓口</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">9:00〜16:00</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">貯金</span>貯金窓口</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
                   </tr>
                   <tr>
-                    <td style="padding: 6px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:2px 4px; border-radius:2px; font-size:10px; margin-right:4px;">ATM</span>ATM</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">9:00〜17:30</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">9:00〜12:30</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">ATM</span>ATM</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:30</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜12:30</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
                   </tr>
                   <tr>
-                    <td style="padding: 6px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#0000cc; color:white; padding:2px 4px; border-radius:2px; font-size:10px; margin-right:4px;">保険</span>保険窓口</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">9:00〜16:00</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#0000cc; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">保険</span>保険窓口</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
+                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
                   </tr>
                 </table>
               `;
             } else if (id === "bus_2") {
               descHTML += `
-                <div style="margin-top: 10px; font-size: 13px; color: #555;">到着予想時刻：74号館+28，61号館+29,65号館+30</div>
-                <h4 style="margin-top: 15px; margin-bottom: 8px; color: #333; font-size: 15px; border-left: 4px solid #f66c28; padding-left: 8px;">23号館→八束穂（平日）</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 14px;">
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">8:20</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">8:40</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">9:20</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">9:40</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">10:40</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">12:00</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">12:30</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">13:20</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">15:10</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">16:30</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">17:10</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">17:50</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 6px 12px; border-radius: 4px;">19:10</span>
+                <div style="margin-top: 20px; font-size: 26px; color: #555;">到着予想時刻：74号館+28，61号館+29,65号館+30</div>
+                <h4 style="margin-top: 30px; margin-bottom: 16px; color: #333; font-size: 30px; border-left: 8px solid #f66c28; padding-left: 16px;">23号館→八束穂（平日）</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 28px;">
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:20</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:40</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:20</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:40</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">10:40</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:00</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:30</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">13:20</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">15:10</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">16:30</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:10</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:50</span>
+                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">19:10</span>
                 </div>
               `;
             } else if (id === "6LC") {
               descHTML += `
-                <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; text-align: center;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 28px; text-align: center;">
                   <tr>
-                    <th style="padding: 8px; border: 1px solid #ddd; background: #f0f0f0; width: 35%;">平日</th>
-                    <td style="padding: 8px; border: 1px solid #ddd;">8:30〜22:00</td>
+                    <th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0; width: 35%;">平日</th>
+                    <td style="padding: 16px; border: 1px solid #ddd;">8:30〜22:00</td>
                   </tr>
                   <tr>
-                    <th style="padding: 8px; border: 1px solid #ddd; background: #f0f0f0;">土曜日</th>
-                    <td style="padding: 8px; border: 1px solid #ddd;">8:30〜17:00</td>
+                    <th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">土曜日</th>
+                    <td style="padding: 16px; border: 1px solid #ddd;">8:30〜17:00</td>
                   </tr>
                   <tr>
-                    <th style="padding: 8px; border: 1px solid #ddd; background: #f0f0f0;">日・祝日</th>
-                    <td style="padding: 8px; border: 1px solid #ddd;">10:00〜17:00</td>
+                    <th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">日・祝日</th>
+                    <td style="padding: 16px; border: 1px solid #ddd;">10:00〜17:00</td>
                   </tr>
                 </table>
-                <div style="margin-top: 8px; font-size: 12px; color: #d9534f; text-align: right;">※長期休み中は時間が変更されます。</div>
+                <div style="margin-top: 16px; font-size: 24px; color: #d9534f; text-align: right;">※長期休み中は時間が変更されます。</div>
               `;
             } else if (id === "ラテラ") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <div style="margin-bottom: 8px; display: flex;">
-                    <strong style="margin-right: 10px;">■平日</strong>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 16px; display: flex;">
+                    <strong style="margin-right: 20px;">■平日</strong>
                     <div>
-                      <span style="display:inline-block; width: 110px;">モーニング</span> 8:00 - 10:00<br>
-                      <span style="display:inline-block; width: 110px;">ランチ</span> 10:00 - 15:00<br>
-                      <span style="display:inline-block; width: 110px;">ディナー</span> 16:00 - 19:00
+                      <span style="display:inline-block; width: 220px;">モーニング</span> 8:00 - 10:00<br>
+                      <span style="display:inline-block; width: 220px;">ランチ</span> 10:00 - 15:00<br>
+                      <span style="display:inline-block; width: 220px;">ディナー</span> 16:00 - 19:00
                     </div>
                   </div>
                   <div>
-                    <strong style="margin-right: 10px;">■土曜</strong> 10:00 - 13:00
+                    <strong style="margin-right: 20px;">■土曜</strong> 10:00 - 13:00
                   </div>
-                  <div style="margin-top: 12px;">
+                  <div style="margin-top: 24px;">
                     <a href="#" target="_blank" style="color: #0056b3; text-decoration: none;">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                       <span style="text-decoration: underline;">Restaurant LA TERRA</span>
                     </a>
                   </div>
@@ -740,13 +730,13 @@
               `;
             } else if (id === "イルソーレ") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <div style="margin-bottom: 8px;">
-                    <strong style="margin-right: 10px;">■平日</strong> 10:00 - 14:00
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 16px;">
+                    <strong style="margin-right: 20px;">■平日</strong> 10:00 - 14:00
                   </div>
-                  <div style="margin-top: 12px;">
+                  <div style="margin-top: 24px;">
                     <a href="#" target="_blank" style="color: #0056b3; text-decoration: none;">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                       <span style="text-decoration: underline;">Cafeteria IL SOLE</span>
                     </a>
                   </div>
@@ -754,16 +744,16 @@
               `;
             } else if (id === "コンビニ") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <div style="margin-bottom: 4px;">
-                    <strong style="margin-right: 10px;">■平日</strong> 8:30 - 19:00
-                  </div>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
                   <div style="margin-bottom: 8px;">
-                    <strong style="margin-right: 10px;">■土曜</strong> 8:30 - 13:30
+                    <strong style="margin-right: 20px;">■平日</strong> 8:30 - 19:00
                   </div>
-                  <div style="margin-top: 12px;">
+                  <div style="margin-bottom: 16px;">
+                    <strong style="margin-right: 20px;">■土曜</strong> 8:30 - 13:30
+                  </div>
+                  <div style="margin-top: 24px;">
                     <a href="#" target="_blank" style="color: #0056b3; text-decoration: none;">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                       <span style="text-decoration: underline;">Convenience ACQUA</span>
                     </a>
                   </div>
@@ -771,49 +761,49 @@
               `;
             } else if (id === "1") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 8px 0; color: #333; font-size: 16px; border-bottom: 1px dotted #ccc; padding-bottom: 8px;">大学事務局</h4>
-                  <div style="padding-top: 8px;">
-                    <strong style="margin-right: 10px;">■窓口対応時間</strong>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <h4 style="margin: 0 0 16px 0; color: #333; font-size: 32px; border-bottom: 2px dotted #ccc; padding-bottom: 16px;">大学事務局</h4>
+                  <div style="padding-top: 16px;">
+                    <strong style="margin-right: 20px;">■窓口対応時間</strong>
                     <div style="display: inline-block; vertical-align: top;">
-                      <span style="display:inline-block; width: 60px;">平日</span>： 8:30〜17:20<br>
-                      <span style="display:inline-block; width: 60px;">土曜日</span>： 8:30〜13:00
+                      <span style="display:inline-block; width: 120px;">平日</span>： 8:30〜17:20<br>
+                      <span style="display:inline-block; width: 120px;">土曜日</span>： 8:30〜13:00
                     </div>
                   </div>
                 </div>
               `;
             } else if (id === "23") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 12px;">
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 24px;">
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      学生ステーション <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">23号館1階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      学生ステーション <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">23号館1階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜21:00 / [土曜日] 8:30〜17:00
                     </div>
                   </div>
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      留学支援・国際交流センター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">23号館2階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      留学支援・国際交流センター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">23号館2階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜17:20 / [土曜日] 8:30〜13:00
                     </div>
                   </div>
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      基礎英語教育センター（EEC） <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">23号館2・3階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      基礎英語教育センター（EEC） <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">23号館2・3階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜17:30 / [土曜日] 閉館
                     </div>
                   </div>
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      数理工教育研究センター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">23号館4・5階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      数理工教育研究センター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">23号館4・5階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜18:00 / [土曜日] 8:30〜13:00
                     </div>
                   </div>
@@ -821,20 +811,20 @@
               `;
             } else if (id === "8") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 12px;">
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 24px;">
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      自己開発センター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">8号館2階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      自己開発センター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">8号館2階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜17:20 / [土曜日] 8:30〜13:00
                     </div>
                   </div>
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      パソコンセンター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">8号館3階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      パソコンセンター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">8号館3階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■窓口対応時間</strong> [平日] 8:30〜17:20 / [土曜日] 8:30〜13:00
                     </div>
                   </div>
@@ -842,24 +832,24 @@
               `;
             } else if (id === "36") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                    カウンセリングセンター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">36号館</span>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                    カウンセリングセンター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">36号館</span>
                   </h4>
-                  <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px; margin-top: 8px;">
+                  <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px; margin-top: 16px;">
                     <strong>■カウンセリング予約受付時間</strong><br>
                     [平日] 12:00〜17:00 （木曜日 13:00〜17:00）<br>
-                    [土曜日] 8:30〜13:00 <span style="color: #d9534f; margin-left: 4px;">※予約制です</span>
+                    [土曜日] 8:30〜13:00 <span style="color: #d9534f; margin-left: 8px;">※予約制です</span>
                   </div>
                 </div>
               `;
             } else if (id === "41") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                    夢考房 <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">41号館</span>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                    夢考房 <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">41号館</span>
                   </h4>
-                  <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px; margin-top: 8px;">
+                  <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px; margin-top: 16px;">
                     <strong>■利用時間</strong><br>
                     [平日] 8:40〜21:00 / [土曜日] 8:40〜17:00 / [日曜日] 9:30〜17:00
                   </div>
@@ -867,11 +857,11 @@
               `;
             } else if (id === "10") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                    進路開発センター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">10号館2階</span>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                    進路開発センター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">10号館2階</span>
                   </h4>
-                  <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px; margin-top: 8px;">
+                  <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px; margin-top: 16px;">
                     <strong>■窓口対応時間</strong><br>
                     [平日] 8:30〜17:20 / [土曜日] 8:30〜13:00
                   </div>
@@ -879,11 +869,11 @@
               `;
             } else if (id === "11") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                    扇が丘診療所 <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">11号館1階</span>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                    扇が丘診療所 <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">11号館1階</span>
                   </h4>
-                  <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px; margin-top: 8px;">
+                  <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px; margin-top: 16px;">
                     <strong>■窓口対応時間</strong><br>
                     [平日] 9:00〜17:00
                   </div>
@@ -891,20 +881,20 @@
               `;
             } else if (id === "12" || id === "15") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 12px;">
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 24px;">
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      アントレプレナーズラボ <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">12号館・15号館</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      アントレプレナーズラボ <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">12号館・15号館</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜21:00 / [土曜日] 8:30〜13:00
                     </div>
                   </div>
                   <div>
-                    <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                      SDGs推進センター <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">12号館1階</span>
+                    <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                      SDGs推進センター <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">12号館1階</span>
                     </h4>
-                    <div style="background: #f4f4f4; padding: 6px 10px; font-size: 13px;">
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 26px;">
                       <strong>■利用時間</strong> [平日] 8:30〜17:30 / [土曜日] 8:30〜13:00
                     </div>
                   </div>
@@ -912,18 +902,18 @@
               `;
             } else if (id === "20") {
               descHTML += `
-                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 6px 0; font-size: 15px;">
-                    スポーツ考房トレーニングルーム <span style="font-size: 13px; font-weight: normal; color: #666; margin-left: 8px;">第2体育館2階 (20号館)</span>
+                <div style="margin-top: 30px; font-size: 28px; line-height: 1.6; color: #333;">
+                  <h4 style="margin: 0 0 12px 0; font-size: 30px;">
+                    スポーツ考房トレーニングルーム <span style="font-size: 26px; font-weight: normal; color: #666; margin-left: 16px;">第2体育館2階 (20号館)</span>
                   </h4>
-                  <div style="background: #f4f4f4; padding: 8px 10px; font-size: 13px; margin-top: 8px;">
+                  <div style="background: #f4f4f4; padding: 16px 20px; font-size: 26px; margin-top: 16px;">
                     <strong>■利用時間</strong><br>
                     [平日] 17:30〜20:00 （学生休業期間中：9:00〜17:00）<br>
                     [土曜日] 9:00〜16:00 （学生休業期間中：9:00〜13:00）
                   </div>
-                  <div style="margin-top: 12px;">
+                  <div style="margin-top: 24px;">
                     <a href="https://mercury.kanazawa-it.ac.jp/sports-k/" target="_blank" style="color: #0056b3; text-decoration: none;">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                       <span style="text-decoration: underline;">スポーツ考房 公式Webサイト</span>
                     </a>
                   </div>
