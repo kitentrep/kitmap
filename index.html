@@ -2,7 +2,7 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>KIT Campus Map</title>
   <style>
     :root {
@@ -19,6 +19,8 @@
       margin: 0;
       height: 100vh;
       overflow: hidden;
+      touch-action: none;
+      /* ブラウザのデフォルトズームを防止 */
     }
 
     #main {
@@ -39,13 +41,46 @@
       position: relative;
     }
 
+    #zoom-controls {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 500;
+      pointer-events: auto;
+    }
+
+    .zoom-btn {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .zoom-btn:active {
+      transform: scale(0.9);
+      background-color: #f0f0f0;
+    }
+
     svg#campus-svg {
       width: 100%;
       height: 100%;
       max-width: 100vw;
       max-height: 100vh;
-      touch-action: none;
-      /* iPhone等のページ全体の不要なズームを防止 */
     }
 
     .building-path {
@@ -177,6 +212,10 @@
 <body>
   <div id="main">
     <div id="map-container">
+      <div id="zoom-controls">
+        <button class="zoom-btn" id="zoom-in">+</button>
+        <button class="zoom-btn" id="zoom-out">−</button>
+      </div>
       <svg id="campus-svg" viewBox="0 0 688 886" preserveAspectRatio="xMidYMid meet" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <g id="viewport">
@@ -586,6 +625,8 @@
       const svg = document.getElementById("campus-svg");
       const viewport = document.getElementById("viewport");
       const labelLayer = document.getElementById("label-layer");
+      const zoomInBtn = document.getElementById("zoom-in");
+      const zoomOutBtn = document.getElementById("zoom-out");
 
       // --- ズーム・パン用変数 ---
       let scale = 1;
@@ -599,25 +640,41 @@
         viewport.setAttribute("transform", `translate(${pointX}, ${pointY}) scale(${scale})`);
       }
 
-      svg.onwheel = function (e) {
-        e.preventDefault();
+      function zoom(delta, centerX, centerY) {
         const zoomSpeed = 0.1;
-        const delta = -e.deltaY;
         const newScale = delta > 0 ? scale * (1 + zoomSpeed) : scale / (1 + zoomSpeed);
 
-        // ズーム範囲制限
         if (newScale < 0.5 || newScale > 10) return;
 
-        // マウス位置を中心にズーム
-        const rect = svg.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        pointX = x - (x - pointX) * (newScale / scale);
-        pointY = y - (y - pointY) * (newScale / scale);
+        // 指定座標を中心にズーム
+        pointX = centerX - (centerX - pointX) * (newScale / scale);
+        pointY = centerY - (centerY - pointY) * (newScale / scale);
         scale = newScale;
 
         updateTransform();
+      }
+
+      // ブラウザ標準のズーム（Ctrl+ホイール）を防止
+      window.addEventListener("wheel", (e) => {
+        if (e.ctrlKey) e.preventDefault();
+      }, { passive: false });
+
+      svg.onwheel = function (e) {
+        e.preventDefault();
+        const rect = svg.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        zoom(-e.deltaY, x, y);
+      };
+
+      zoomInBtn.onclick = () => {
+        const rect = svg.getBoundingClientRect();
+        zoom(1, rect.width / 2, rect.height / 2);
+      };
+
+      zoomOutBtn.onclick = () => {
+        const rect = svg.getBoundingClientRect();
+        zoom(-1, rect.width / 2, rect.height / 2);
       };
 
       svg.onmousedown = function (e) {
@@ -640,55 +697,24 @@
         svg.style.cursor = "default";
       };
 
-      // タッチ対応 (ピンチズーム・パン)
-      let initialDist = -1;
+      // タッチ対応 (簡易)
       svg.ontouchstart = function (e) {
         if (e.touches.length === 1) {
           isPanning = true;
           startX = e.touches[0].clientX - pointX;
           startY = e.touches[0].clientY - pointY;
-        } else if (e.touches.length === 2) {
-          initialDist = Math.hypot(
-            e.touches[0].clientX - e.touches[1].clientX,
-            e.touches[0].clientY - e.touches[1].clientY
-          );
         }
       };
 
       svg.ontouchmove = function (e) {
-        // e.preventDefault() により、ブラウザ全体のズーム（モーダルもでかくなる原因）を防止
-        e.preventDefault();
-        if (e.touches.length === 1 && isPanning) {
-          pointX = e.touches[0].clientX - startX;
-          pointY = e.touches[0].clientY - startY;
-          updateTransform();
-        } else if (e.touches.length === 2 && initialDist > 0) {
-          const dist = Math.hypot(
-            e.touches[0].clientX - e.touches[1].clientX,
-            e.touches[0].clientY - e.touches[1].clientY
-          );
-          const newScale = scale * (dist / initialDist);
-
-          if (newScale >= 0.5 && newScale <= 10) {
-            // 中心点を2本指の中間に設定
-            const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-            const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-            const rect = svg.getBoundingClientRect();
-            const x = centerX - rect.left;
-            const y = centerY - rect.top;
-
-            pointX = x - (x - pointX) * (newScale / scale);
-            pointY = y - (y - pointY) * (newScale / scale);
-            scale = newScale;
-            updateTransform();
-          }
-          initialDist = dist;
-        }
+        if (!isPanning || e.touches.length !== 1) return;
+        pointX = e.touches[0].clientX - startX;
+        pointY = e.touches[0].clientY - startY;
+        updateTransform();
       };
 
       svg.ontouchend = function () {
         isPanning = false;
-        initialDist = -1;
       };
 
       // --- 施設ラベル生成 ---
