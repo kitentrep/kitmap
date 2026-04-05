@@ -86,12 +86,16 @@
       position: fixed;
       z-index: 1000;
       left: 0;
-      top: 0;
+      bottom: 0;
+      /* 下に固定 */
       width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
+      height: 25vh;
+      /* 画面の約1/4 */
+      background-color: transparent;
+      /* 地図が見えるように透明 */
+      pointer-events: none;
+      /* 下の地図をクリック可能に */
       align-items: flex-end;
-      /* 下端に配置 */
       justify-content: center;
     }
 
@@ -101,18 +105,19 @@
 
     .modal-content {
       background-color: #fff;
-      padding: 30px 20px 40px 20px;
+      padding: 35px 25px 40px 25px;
       border: none;
       width: 100%;
+      height: 100%;
       max-width: none;
-      height: 50vh;
-      /* 画面の約半分 */
       overflow-y: auto;
       border-radius: 20px 20px 0 0;
       position: relative;
       box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
       transform: translateY(100%);
       transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      pointer-events: auto;
+      /* モーダル内は操作可能 */
     }
 
     .modal.show .modal-content {
@@ -137,11 +142,12 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      font-size: 28px;
+      font-size: 32px;
+      /* 少し大きく */
       font-weight: bold;
       cursor: pointer;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -160,15 +166,18 @@
     #modal-title {
       margin-top: 0;
       color: #333;
-      font-size: 24px;
+      font-size: 28px;
+      /* 大きく */
       font-weight: bold;
     }
 
     #modal-description {
-      color: #666;
-      font-size: 14px;
-      margin-top: 15px;
-      line-height: 1.5;
+      color: #444;
+      /* 少し濃く */
+      font-size: 18px;
+      /* 大きく */
+      margin-top: 20px;
+      line-height: 1.6;
     }
   </style>
 </head>
