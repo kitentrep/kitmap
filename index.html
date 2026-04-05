@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>KIT Campus Map</title>
   <style>
     :root {
@@ -20,8 +19,6 @@
       margin: 0;
       height: 100vh;
       overflow: hidden;
-      /* ページ全体のブラウザズームを抑制する設定を追加 */
-      touch-action: none;
     }
 
     #main {
@@ -40,8 +37,6 @@
       align-items: center;
       background-color: var(--bg);
       position: relative;
-      /* マップコンテナ上でのブラウザ規定動作を抑え、自前ズームに専念 */
-      touch-action: none;
     }
 
     svg#campus-svg {
@@ -49,8 +44,8 @@
       height: 100%;
       max-width: 100vw;
       max-height: 100vh;
-      /* SVG内もタッチ規定動作を無効化 */
       touch-action: none;
+      /* iPhone等のページ全体の不要なズームを防止 */
     }
 
     .building-path {
@@ -645,24 +640,55 @@
         svg.style.cursor = "default";
       };
 
-      // タッチ対応 (簡易)
+      // タッチ対応 (ピンチズーム・パン)
+      let initialDist = -1;
       svg.ontouchstart = function (e) {
         if (e.touches.length === 1) {
           isPanning = true;
           startX = e.touches[0].clientX - pointX;
           startY = e.touches[0].clientY - pointY;
+        } else if (e.touches.length === 2) {
+          initialDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
         }
       };
 
       svg.ontouchmove = function (e) {
-        if (!isPanning || e.touches.length !== 1) return;
-        pointX = e.touches[0].clientX - startX;
-        pointY = e.touches[0].clientY - startY;
-        updateTransform();
+        // e.preventDefault() により、ブラウザ全体のズーム（モーダルもでかくなる原因）を防止
+        e.preventDefault();
+        if (e.touches.length === 1 && isPanning) {
+          pointX = e.touches[0].clientX - startX;
+          pointY = e.touches[0].clientY - startY;
+          updateTransform();
+        } else if (e.touches.length === 2 && initialDist > 0) {
+          const dist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          const newScale = scale * (dist / initialDist);
+
+          if (newScale >= 0.5 && newScale <= 10) {
+            // 中心点を2本指の中間に設定
+            const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            const rect = svg.getBoundingClientRect();
+            const x = centerX - rect.left;
+            const y = centerY - rect.top;
+
+            pointX = x - (x - pointX) * (newScale / scale);
+            pointY = y - (y - pointY) * (newScale / scale);
+            scale = newScale;
+            updateTransform();
+          }
+          initialDist = dist;
+        }
       };
 
       svg.ontouchend = function () {
         isPanning = false;
+        initialDist = -1;
       };
 
       // --- 施設ラベル生成 ---
