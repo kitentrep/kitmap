@@ -534,7 +534,7 @@
       P_3: "駐車場",
       bus: "バス停",
       bus_2: "バス停",
-      コンビニ: "コンビニ",
+      コンビニ: "コンビニ・アクア",
       郵便局: "郵便局",
       ラテラ: "ラテラ",
       イルソーレ: "イルソーレ",
@@ -667,6 +667,59 @@
                   </tr>
                 </table>
                 <div style="margin-top: 8px; font-size: 12px; color: #d9534f; text-align: right;">※長期休み中は時間が変更されます。</div>
+              `;
+            } else if (id === "ラテラ") {
+              descHTML += `
+                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 8px; display: flex;">
+                    <strong style="margin-right: 10px;">■平日</strong>
+                    <div>
+                      <span style="display:inline-block; width: 110px;">モーニングタイム</span> 8:00 - 10:00<br>
+                      <span style="display:inline-block; width: 110px;">ランチタイム</span> 10:00 - 15:00<br>
+                      <span style="display:inline-block; width: 110px;">ディナータイム</span> 16:00 - 19:00
+                    </div>
+                  </div>
+                  <div>
+                    <strong style="margin-right: 10px;">■土曜</strong> 10:00 - 13:00
+                  </div>
+                  <div style="margin-top: 12px;">
+                    <a href="#" target="_blank" style="color: #0056b3; text-decoration: none;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <span style="text-decoration: underline;">Restaurant LA TERRA</span>
+                    </a>
+                  </div>
+                </div>
+              `;
+            } else if (id === "イルソーレ") {
+              descHTML += `
+                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 8px;">
+                    <strong style="margin-right: 10px;">■平日</strong> 10:00 - 14:00
+                  </div>
+                  <div style="margin-top: 12px;">
+                    <a href="#" target="_blank" style="color: #0056b3; text-decoration: none;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <span style="text-decoration: underline;">Cafeteria IL SOLE</span>
+                    </a>
+                  </div>
+                </div>
+              `;
+            } else if (id === "コンビニ") {
+              descHTML += `
+                <div style="margin-top: 15px; font-size: 14px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 4px;">
+                    <strong style="margin-right: 10px;">■平日</strong> 8:30 - 19:00
+                  </div>
+                  <div style="margin-bottom: 8px;">
+                    <strong style="margin-right: 10px;">■土曜</strong> 8:30 - 13:30
+                  </div>
+                  <div style="margin-top: 12px;">
+                    <a href="#" target="_blank" style="color: #0056b3; text-decoration: none;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      <span style="text-decoration: underline;">Convenience ACQUA</span>
+                    </a>
+                  </div>
+                </div>
               `;
             }
 
