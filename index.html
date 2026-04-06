@@ -206,10 +206,31 @@
       margin-top: 25px;
       line-height: 1.4;
     }
+
+    #disclaimer-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      padding: 12px 15px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #777;
+      border-bottom: 1px solid #eee;
+      z-index: 2000;
+      text-align: center;
+      pointer-events: none;
+    }
   </style>
 </head>
 
 <body>
+  <div id="disclaimer-header">
+    <strong style="color: #333;">金沢工業大学マップ（非公式）</strong><br>
+    情報は参考程度に使ってください。正確な情報は一次情報を使うようにしてください。
+  </div>
   <div id="map-container">
     <svg id="campus-svg" viewBox="0 0 688 886" preserveAspectRatio="xMidYMid slice" fill="none"
       xmlns="http://www.w3.org/2000/svg">
@@ -862,15 +883,7 @@
               descHTML += `
                 <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
                   <div style="margin-bottom: 16px; display: flex;">
-                    <strong style="margin-right: 20px;">■平日</strong>
-                    <div>
-                      <span style="display:inline-block; width: 220px;">モーニング</span> 8:00 - 10:00<br>
-                      <span style="display:inline-block; width: 220px;">ランチ</span> 10:00 - 14:00<br>
-                      <span style="display:inline-block; width: 220px;">ディナー</span> 16:00 - 19:00
-                    </div>
-                  </div>
-                  <div>
-                    <strong style="margin-right: 20px;">■土曜</strong> 10:00 - 13:00
+                    <strong style="margin-right: 20px;">■平日</strong> 10:00 - 14:00
                   </div>
                 </div>
               `;
