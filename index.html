@@ -5,21 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" href="favicon.png" type="image/png" />
-  <title>【非公式】金沢工業大学（KIT）キャンパスマップ - 施設情報・営業時間</title>
+  <title>【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内・営業時間</title>
   <meta name="description"
-    content="金沢工業大学（KIT）扇が丘キャンパスの非公式マップアプリです。各号館の場所や、ライブラリーセンター、コンビニ（アクア）、学食（ラテラ・イルソーレ）、郵便局などの営業時間・詳細情報を手軽に確認できます。" />
-  <meta name="keywords" content="金沢工業大学, KIT, キャンパスマップ, 扇が丘キャンパス, 大学マップ, 営業時間, 施設情報" />
+    content="金沢工業大学（KIT）扇が丘キャンパスの非公式マップアプリです。構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ（アクア）、学食（ラテラ・イルソーレ）、郵便局などの施設案内・営業時間を手軽に確認できます。" />
+  <meta name="keywords" content="金沢工業大学, KIT, キャンパスマップ, 扇が丘キャンパス, 構内図, 案内, 大学マップ, 営業時間, 施設情報" />
 
   <!-- Open Graph / OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="【非公式】金沢工業大学（KIT）キャンパスマップ" />
-  <meta property="og:description" content="KITの施設情報や営業時間をスマホでサクサク確認できる非公式キャンパスマップです。" />
+  <meta property="og:title" content="【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
+  <meta property="og:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できる非公式キャンパスマップです。" />
   <meta property="og:site_name" content="KIT Campus Map" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="【非公式】金沢工業大学（KIT）キャンパスマップ" />
-  <meta name="twitter:description" content="KITの施設情報や営業時間をスマホでサクサク確認できる非公式キャンパスマップです。" />
+  <meta name="twitter:title" content="【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
+  <meta name="twitter:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できる非公式キャンパスマップです。" />
   <style>
     :root {
       --bg: #ffffff;
@@ -688,10 +688,35 @@
         if (e.ctrlKey) e.preventDefault();
       }, { passive: false });
 
-      window.onmouseup = function () {
+      // --- PC操作（マウス） ---
+      svg.addEventListener("mousedown", function (e) {
+        if (e.button !== 0) return; // 左クリックのみ
+        isPanning = true;
+        startX = e.clientX - pointX;
+        startY = e.clientY - pointY;
+        svg.style.cursor = "grabbing";
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        if (!isPanning) return;
+        pointX = e.clientX - startX;
+        pointY = e.clientY - startY;
+        updateTransform();
+      });
+
+      window.addEventListener("mouseup", function () {
         isPanning = false;
         svg.style.cursor = "default";
-      };
+      });
+
+      // マウスホイールによるズーム
+      svg.addEventListener("wheel", function (e) {
+        e.preventDefault();
+        const rect = svg.getBoundingClientRect();
+        const centerX = e.clientX - rect.left;
+        const centerY = e.clientY - rect.top;
+        zoom(e.deltaY < 0 ? 1 : -1, centerX, centerY);
+      }, { passive: false });
 
       svg.style.touchAction = "none";
 
