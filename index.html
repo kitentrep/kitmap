@@ -729,13 +729,22 @@
         svg.style.cursor = "default";
       });
 
-      // マウスホイールによるズーム
+      // マウスホイールまたはトラックパッドによる操作
       svg.addEventListener("wheel", function (e) {
         e.preventDefault();
         const rect = svg.getBoundingClientRect();
         const centerX = e.clientX - rect.left;
         const centerY = e.clientY - rect.top;
-        zoom(e.deltaY < 0 ? 1 : -1, centerX, centerY);
+
+        if (e.ctrlKey) {
+          // ピンチズーム（Ctrl + ホイール相当）
+          zoom(e.deltaY < 0 ? 1 : -1, centerX, centerY);
+        } else {
+          // 二本指ドラッグ / スクロールによる移動
+          pointX -= e.deltaX;
+          pointY -= e.deltaY;
+          updateTransform();
+        }
       }, { passive: false });
 
       svg.style.touchAction = "none";
