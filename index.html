@@ -7,36 +7,36 @@
   <link rel="icon" href="favicon.png" type="image/png" sizes="192x192" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" href="favicon.png" />
-  <title>【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内・営業時間</title>
+  <title>金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内・営業時間</title>
   <meta name="description"
-    content="金沢工業大学（KIT）扇が丘キャンパスの非公式マップアプリです。構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ（アクア）、学食（ラテラ・イルソーレ）、郵便局などの施設案内・営業時間を手軽に確認できます。" />
+    content="金沢工業大学（KIT）扇が丘キャンパスのマップアプリです。構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ（アクア）、学食（ラテラ・イルソーレ）、郵便局などの施設案内・営業時間を手軽に確認できます。" />
   <meta name="keywords" content="金沢工業大学, KIT, キャンパスマップ, 扇が丘キャンパス, 構内図, 案内, 大学マップ, 営業時間, 施設情報, 5号館, 23号館" />
   <link rel="canonical" href="https://kitentrep.github.io/kitmap/" />
 
   <!-- Open Graph / OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
-  <meta property="og:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できる非公式キャンパスマップです。" />
+  <meta property="og:title" content="金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
+  <meta property="og:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できるキャンパスマップです。" />
   <meta property="og:site_name" content="KIT Campus Map" />
   <meta property="og:url" content="https://kitentrep.github.io/kitmap/" />
   <meta property="og:image" content="https://kitentrep.github.io/kitmap/favicon.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
-  <meta name="twitter:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できる非公式キャンパスマップです。" />
+  <meta name="twitter:title" content="金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
+  <meta name="twitter:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できるキャンパスマップです。" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "金沢工業大学（KIT）キャンパスマップ",
     "url": "https://kitentrep.github.io/kitmap/",
-    "description": "金沢工業大学（KIT）扇が丘キャンパスの非公式マップアプリです。構内図、施設案内、営業時間を手軽に確認できます。",
+    "description": "金沢工業大学（KIT）扇が丘キャンパスのマップアプリです。構内図、施設案内、営業時間を手軽に確認できます。",
     "applicationCategory": "MapApplication",
     "operatingSystem": "All",
     "author": {
       "@type": "Person",
-      "name": "aeoyna"
+      "name": "kitentrep"
     }
   }
   </script>
@@ -259,14 +259,107 @@
       text-align: center;
       pointer-events: none;
     }
+
+    #search-container {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 500px;
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 15px 20px;
+      padding-right: 50px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+      background: transparent;
+    }
+
+    #search-clear {
+      position: absolute;
+      right: 15px;
+      font-size: 24px;
+      color: #aaa;
+      cursor: pointer;
+      display: none;
+      user-select: none;
+    }
+
+    #search-results {
+      background: white;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      margin-top: -1px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      border: 1px solid #ddd;
+      border-top: none;
+    }
+
+    .search-result-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-item:hover {
+      background: #f9f9f9;
+    }
+
+    .search-result-name {
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .search-result-id {
+      font-size: 12px;
+      color: #888;
+    }
   </style>
 </head>
 
 <body>
   <header id="disclaimer-header">
-    <h1 style="font-size: 14px; margin: 0 0 4px 0; color: #333;">【非公式】金沢工業大学（KIT）扇が丘キャンパスマップ</h1>
+    <h1 style="font-size: 14px; margin: 0 0 4px 0; color: #333;">金沢工業大学（KIT）扇が丘キャンパスマップ</h1>
     情報は参考程度に使ってください。正確な情報は一次情報を使うようにしてください。
   </header>
+
+  <div id="search-container">
+    <div class="search-input-wrapper">
+      <input type="text" id="search-input" placeholder="施設や号館を検索..." autocomplete="off">
+      <span id="search-clear">&times;</span>
+    </div>
+    <div id="search-results"></div>
+  </div>
   <div id="map-container">
     <svg id="campus-svg" viewBox="0 0 688 886" preserveAspectRatio="xMidYMid slice" fill="none"
       xmlns="http://www.w3.org/2000/svg">
@@ -672,18 +765,27 @@
     };
 
     window.onload = function () {
+      console.log("KIT Map: window.onload started");
       const svg = document.getElementById("campus-svg");
       const viewport = document.getElementById("viewport");
       const labelLayer = document.getElementById("label-layer");
+      const modal = document.getElementById("modal");
+      const closeBtn = document.getElementById("modal-close");
+      const searchInput = document.getElementById("search-input");
+      const searchClear = document.getElementById("search-clear");
+      const searchResults = document.getElementById("search-results");
 
-      // --- ズーム・パン用変数 ---
+      if (!svg || !viewport) {
+        console.error("KIT Map: Required SVG elements not found");
+        return;
+      }
+
       let scale = 1;
       let pointX = 0;
       let pointY = 0;
-      let startX = 0;
-      let startY = 0;
       let isPanning = false;
-      let lastDist = 0; // ピンチズーム用
+      let startX, startY;
+      let lastDist = 0;
 
       function updateTransform() {
         viewport.setAttribute("transform", `translate(${pointX}, ${pointY}) scale(${scale})`);
@@ -692,101 +794,159 @@
       function zoom(delta, centerX, centerY) {
         const zoomSpeed = 0.1;
         const newScale = delta > 0 ? scale * (1 + zoomSpeed) : scale / (1 + zoomSpeed);
-
         if (newScale < 0.5 || newScale > 10) return;
-
-        // 指定座標を中心にズーム
         pointX = centerX - (centerX - pointX) * (newScale / scale);
         pointY = centerY - (centerY - pointY) * (newScale / scale);
         scale = newScale;
-
         updateTransform();
       }
 
-      // ブラウザ標準のズーム（Ctrl+ホイール）を防止
-      window.addEventListener("wheel", (e) => {
-        if (e.ctrlKey) e.preventDefault();
-      }, { passive: false });
+      // --- Search Implementation ---
+      const searchData = Object.keys(kitFullNames).map(id => ({
+        id: String(id),
+        name: kitFullNames[id]
+      })).filter(item => {
+        return item.id && !item.id.includes("Rectangle") && !item.id.includes("road") && !item.id.includes("corridor");
+      });
+      console.log("KIT Map: Search data initialized", searchData.length, "items");
 
-      // --- PC操作（マウス） ---
-      svg.addEventListener("mousedown", function (e) {
-        if (e.button !== 0) return; // 左クリックのみ
+      if (searchInput) {
+        searchInput.oninput = function() {
+          const query = this.value.trim().toLowerCase();
+          if (query.length > 0) {
+            searchClear.style.display = "block";
+            const filtered = searchData.filter(item => 
+              (item.name && item.name.toLowerCase().includes(query)) || 
+              (item.id && item.id.toLowerCase().includes(query))
+            );
+            displayResults(filtered);
+          } else {
+            searchClear.style.display = "none";
+            searchResults.style.display = "none";
+          }
+        };
+      }
+
+      function displayResults(results) {
+        if (!searchResults) return;
+        searchResults.innerHTML = "";
+        if (results.length === 0) {
+          searchResults.style.display = "none";
+          return;
+        }
+        results.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "search-result-item";
+          div.innerHTML = `<div class="search-result-name">${item.name}</div><div class="search-result-id">${item.id}</div>`;
+          div.onclick = function(e) {
+            e.stopPropagation();
+            selectResult(item);
+          };
+          searchResults.appendChild(div);
+        });
+        searchResults.style.display = "block";
+      }
+
+      function selectResult(item) {
+        console.log("KIT Map: Selected search result", item);
+        const targetElement = document.getElementById(item.id) || document.querySelector(`[id="${item.id}"]`);
+        if (targetElement) {
+          focusElement(targetElement);
+        } else {
+          console.warn("KIT Map: Target element not found for ID", item.id);
+        }
+        searchInput.value = "";
+        searchClear.style.display = "none";
+        searchResults.style.display = "none";
+      }
+
+      function focusElement(el) {
+        const bbox = el.getBBox();
+        const centerX = bbox.x + bbox.width / 2;
+        const centerY = bbox.y + bbox.height / 2;
+        scale = 3.5;
+        pointX = (688 / 2) - (centerX * scale);
+        pointY = (886 / 2) - (centerY * scale);
+        updateTransform();
+        setTimeout(() => {
+          el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+        }, 100);
+      }
+
+      if (searchClear) {
+        searchClear.onclick = function(e) {
+          e.stopPropagation();
+          searchInput.value = "";
+          this.style.display = "none";
+          searchResults.style.display = "none";
+          searchInput.focus();
+        };
+      }
+
+      // --- Map Navigation (Pan/Zoom) ---
+      svg.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
         isPanning = true;
         startX = e.clientX - pointX;
         startY = e.clientY - pointY;
         svg.style.cursor = "grabbing";
       });
 
-      window.addEventListener("mousemove", function (e) {
+      window.addEventListener("mousemove", (e) => {
         if (!isPanning) return;
         pointX = e.clientX - startX;
         pointY = e.clientY - startY;
         updateTransform();
       });
 
-      window.addEventListener("mouseup", function () {
+      window.addEventListener("mouseup", () => {
         isPanning = false;
         svg.style.cursor = "default";
       });
 
-      // マウスホイールまたはトラックパッドによる操作
-      svg.addEventListener("wheel", function (e) {
+      svg.addEventListener("wheel", (e) => {
         e.preventDefault();
         const rect = svg.getBoundingClientRect();
-        const centerX = e.clientX - rect.left;
-        const centerY = e.clientY - rect.top;
-
+        const cX = e.clientX - rect.left;
+        const cY = e.clientY - rect.top;
         if (e.ctrlKey) {
-          // ピンチズーム（Ctrl + ホイール相当）
-          zoom(e.deltaY < 0 ? 1 : -1, centerX, centerY);
+          zoom(e.deltaY < 0 ? 1 : -1, cX, cY);
         } else {
-          // 二本指ドラッグ / スクロールによる移動
           pointX -= e.deltaX;
           pointY -= e.deltaY;
           updateTransform();
         }
       }, { passive: false });
 
-      svg.style.touchAction = "none";
-
-      // タッチ対応（パン＆ピンチズーム）
-      svg.addEventListener("touchstart", function (e) {
+      // Touch events (Mobile support)
+      svg.addEventListener("touchstart", (e) => {
         if (e.touches.length === 1) {
           isPanning = true;
           startX = e.touches[0].clientX - pointX;
           startY = e.touches[0].clientY - pointY;
         } else if (e.touches.length === 2) {
           isPanning = false;
-          lastDist = Math.hypot(
-            e.touches[0].clientX - e.touches[1].clientX,
-            e.touches[0].clientY - e.touches[1].clientY
-          );
+          lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
         }
       }, { passive: false });
 
-      svg.addEventListener("touchmove", function (e) {
-        e.preventDefault(); // ブラウザ標準のスクロール・ズームを防止
+      svg.addEventListener("touchmove", (e) => {
+        e.preventDefault();
         const rect = svg.getBoundingClientRect();
-
         if (e.touches.length === 1 && isPanning) {
           pointX = e.touches[0].clientX - startX;
           pointY = e.touches[0].clientY - startY;
           updateTransform();
         } else if (e.touches.length === 2) {
-          const dist = Math.hypot(
-            e.touches[0].clientX - e.touches[1].clientX,
-            e.touches[0].clientY - e.touches[1].clientY
-          );
-          const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
-          const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
-
+          const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          const cX = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+          const cY = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
           if (lastDist > 0) {
             const ratio = dist / lastDist;
             const newScale = scale * ratio;
-
             if (newScale >= 0.5 && newScale <= 10) {
-              pointX = centerX - (centerX - pointX) * (newScale / scale);
-              pointY = centerY - (centerY - pointY) * (newScale / scale);
+              pointX = cX - (cX - pointX) * (newScale / scale);
+              pointY = cY - (cY - pointY) * (newScale / scale);
               scale = newScale;
               updateTransform();
             }
@@ -795,57 +955,30 @@
         }
       }, { passive: false });
 
-      svg.addEventListener("touchend", function (e) {
-        if (e.touches.length === 0) {
-          isPanning = false;
-        } else if (e.touches.length === 1) {
-          isPanning = true;
-          startX = e.touches[0].clientX - pointX;
-          startY = e.touches[0].clientY - pointY;
-        }
+      svg.addEventListener("touchend", () => {
+        isPanning = false;
         lastDist = 0;
-      }, { passive: false });
+      });
 
-      // --- 施設ラベル生成 ---
-      const allElements = document.querySelectorAll(
-        "#base-layer path, #base-layer rect, #base-layer g",
-      );
-
+      // --- Marker and Modal Initialization ---
+      const allElements = document.querySelectorAll("#base-layer path, #base-layer rect, #base-layer g");
       allElements.forEach((el) => {
-        const fill =
-          el.getAttribute("fill") ||
-          (el.tagName === "g" && el.querySelector("path")
-            ? el.querySelector("path").getAttribute("fill")
-            : "");
-
+        const fill = el.getAttribute("fill") || (el.tagName === "g" && el.querySelector("path") ? el.querySelector("path").getAttribute("fill") : "");
         const isBuilding = fill && fill.toUpperCase() === "#F66C28";
         const isFacility = fill && fill.toLowerCase() === "black";
 
         if (isBuilding || isFacility) {
-          const targetPath =
-            el.tagName === "g" ? el.querySelector("path") : el;
-          let id = el.id || (el.parentElement ? el.parentElement.id : "");
+          const targetPath = (el.tagName === "g" && el.querySelector("path")) ? el.querySelector("path") : el;
+          const id = el.id || (el.parentElement ? el.parentElement.id : "");
+          if (!id || id.includes("Rectangle") || id.includes("road") || id.includes("corridor")) return;
 
-          if (
-            !id ||
-            id.includes("Rectangle") ||
-            id.includes("road") ||
-            id.includes("corridor")
-          )
-            return;
+          if (isBuilding) targetPath.classList.add("building-path");
+          else if (isFacility) targetPath.classList.add("facility-marker");
 
-          if (isBuilding) {
-            targetPath.classList.add("building-path");
-          } else if (isFacility) {
-            targetPath.classList.add("facility-marker");
-          }
-
+          // Add labels for buildings
           if (kitLabelNames[id] && isBuilding) {
             const bbox = targetPath.getBBox();
-            const text = document.createElementNS(
-              "http://www.w3.org/2000/svg",
-              "text",
-            );
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
             text.setAttribute("x", bbox.x + bbox.width / 2);
             text.setAttribute("y", bbox.y + bbox.height / 2);
             text.setAttribute("class", "building-label");
@@ -855,210 +988,19 @@
 
           targetPath.onclick = function (e) {
             e.stopPropagation();
+            console.log("KIT Map: Clicked on element", id);
             const name = kitFullNames[id] || (isBuilding ? "建物 " + id : "案内板 " + id);
             document.getElementById("modal-title").innerText = name;
-
             let descHTML = name + " の詳細情報です。";
-
+            
+            // Facility-specific details
             if (id === "郵便局") {
-              descHTML += `
-                <table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 16px; text-align: center;">
-                  <tr style="background: #f66c28; color: white;">
-                    <th style="padding: 12px; border: 1px solid #ddd;"></th>
-                    <th style="padding: 12px; border: 1px solid #ddd;">平日</th>
-                    <th style="padding: 12px; border: 1px solid #ddd;">土曜日</th>
-                    <th style="padding: 12px; border: 1px solid #ddd;">日曜日・休日</th>
-                  </tr>
-                  <tr>
-                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#cc0000; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">郵便</span>郵便窓口</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:00</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">貯金</span>貯金窓口</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">ATM</span>ATM</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:30</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜12:30</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#0000cc; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">保険</span>保険窓口</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                    <td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td>
-                  </tr>
-                </table>
-              `;
+              descHTML += `<table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 16px; text-align: center;"><tr style="background: #f66c28; color: white;"><th style="padding: 12px; border: 1px solid #ddd;"></th><th style="padding: 12px; border: 1px solid #ddd;">平日</th><th style="padding: 12px; border: 1px solid #ddd;">土曜日</th><th style="padding: 12px; border: 1px solid #ddd;">日曜日・休日</th></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#cc0000; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">郵便</span>郵便窓口</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:00</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">貯金</span>貯金窓口</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">ATM</span>ATM</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:30</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜12:30</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#0000cc; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">保険</span>保険窓口</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr></table>`;
             } else if (id === "bus_2") {
-              descHTML += `
-                <div style="margin-top: 20px; font-size: 14px; color: #555;">到着予想時刻：74号館+28，61号館+29,65号館+30</div>
-                <h4 style="margin-top: 30px; margin-bottom: 16px; color: #333; font-size: 22px; border-left: 8px solid #f66c28; padding-left: 16px;">23号館→八束穂（平日）</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 16px;">
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:20</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:40</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:20</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:40</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">10:40</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:00</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:30</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">13:20</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">15:10</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">16:30</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:10</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:50</span>
-                  <span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">19:10</span>
-                </div>
-              `;
+              descHTML += `<div style="margin-top: 20px; font-size: 14px; color: #555;">到着予想時刻：74号館+28，61号館+29,65号館+30</div><h4 style="margin-top: 30px; margin-bottom: 16px; color: #333; font-size: 22px; border-left: 8px solid #f66c28; padding-left: 16px;">23号館→八束穂（平日）</h4><div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 16px;"><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:20</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:40</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:20</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:40</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">10:40</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:00</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:30</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">13:20</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">15:10</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">16:30</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:10</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:50</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">19:10</span></div>`;
             } else if (id === "6LC") {
-              descHTML += `
-                <table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 16px; text-align: center;">
-                  <tr>
-                    <th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0; width: 35%;">平日</th>
-                    <td style="padding: 16px; border: 1px solid #ddd;">8:30〜22:00</td>
-                  </tr>
-                  <tr>
-                    <th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">土曜日</th>
-                    <td style="padding: 16px; border: 1px solid #ddd;">8:30〜17:00</td>
-                  </tr>
-                  <tr>
-                    <th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">日・祝日</th>
-                    <td style="padding: 16px; border: 1px solid #ddd;">10:00〜17:00</td>
-                  </tr>
-                </table>
-                <div style="margin-top: 16px; font-size: 16px; color: #d9534f; text-align: right;">※長期休み中は時間が変更されます。</div>
-                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4>
-                  <div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">
-                    2階 ライブラリーセンター内
-                  </div>
-                </div>
-                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;">
-                    <span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>
-                    AED設置場所
-                  </h4>
-                  <div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">
-                    1階
-                  </div>
-                </div>
-              `;
-            } else if (id === "6") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 22px;">
-                    多目的ホール <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">6号館3階</span>
-                  </h4>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4>
-                    <div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">
-                      1階 AI情報技術教育センター事務室前
-                    </div>
-                  </div>
-                </div>
-              `;
-            } else if (id === "7") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 22px;">
-                    自習室 <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">7号館1階</span>
-                  </h4>
-                  <div style="background: #f4f4f4; padding: 12px 20px; font-size: 14px; margin-top: 16px;">
-                    <strong>■利用時間</strong> 24時間利用可能
-                  </div>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 22px;">
-                      地下スタジオ <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">地下</span>
-                    </h4>
-                  </div>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4>
-                    <div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">
-                      1階 自習室
-                    </div>
-                  </div>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;">
-                      <span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>
-                      AED設置場所
-                    </h4>
-                    <div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">
-                      1階 自習室
-                    </div>
-                  </div>
-                </div>
-                `;
-            } else if (id === "9") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;">
-                    <span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>
-                    AED設置場所
-                  </h4>
-                  <div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">
-                    1階 入口
-                  </div>
-                </div>
-              `;
-            } else if (id === "ラテラ") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <div style="margin-bottom: 16px; display: flex;">
-                    <strong style="margin-right: 20px;">■平日</strong>
-                    <div>
-                      <span style="display:inline-block; width: 220px;">モーニング</span> 8:00 - 10:00<br>
-                        <span style="display:inline-block; width: 220px;">ランチ</span> 10:00 - 15:00<br>
-                          <span style="display:inline-block; width: 220px;">ディナー</span> 16:00 - 19:00
-                        </div>
-                    </div>
-                    <div>
-                      <strong style="margin-right: 20px;">■土曜</strong> 10:00 - 13:00
-                    </div>
-                  </div>
-              `;
-            } else if (id === "イルソーレ") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <div style="margin-bottom: 16px; display: flex;">
-                    <strong style="margin-right: 20px;">■平日</strong> 10:00 - 14:00
-                  </div>
-                </div>
-                `;
+              descHTML += `<table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 16px; text-align: center;"><tr><th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0; width: 35%;">平日</th><td style="padding: 16px; border: 1px solid #ddd;">8:30〜22:00</td></tr><tr><th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">土曜日</th><td style="padding: 16px; border: 1px solid #ddd;">8:30〜17:00</td></tr><tr><th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">日・祝日</th><td style="padding: 16px; border: 1px solid #ddd;">10:00〜17:00</td></tr></table><div style="margin-top: 16px; font-size: 16px; color: #d9534f; text-align: right;">※長期休み中は時間が変更されます。</div><div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;"><h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4><div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">2階 ライブラリーセンター内</div></div><div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;"><h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;"><span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>AED設置場所</h4><div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">1階</div></div>`;
             } else if (id === "1") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 22px;">
-                    大学事務局 <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">1号館1階</span>
-                  </h4>
-                  <div style="background: #f4f4f4; padding: 12px 20px; font-size: 14px; margin-top: 16px;">
-                    <strong>■窓口対応時間</strong><br>
-                    [平日] 8:30〜17:20 / [土曜日] 8:30〜13:00
-                  </div>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4>
-                    <div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">
-                      2階 大学事務局窓口前
-                    </div>
-                  </div>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;">
-                    <h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;">
-                      <span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>
-                      AED設置場所
-                    </h4>
-                    <div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">
-                      1階 防災センター入口 (夜間出入口付近)
-                    </div>
-                  </div>
-                </div>
-                `;
-            } else if (id === "23") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 24px;">
                   <div>
                     <h4 style="margin: 0 0 12px 0; font-size: 22px;">
                       学生ステーション <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">23号館1階</span>
@@ -1342,18 +1284,20 @@
         }
       });
 
-      const modal = document.getElementById("modal");
-      const closeBtn = document.getElementById("modal-close");
+      // 画面クリックで閉じる処理
+      window.onclick = function (e) {
+        if (searchResults && !document.getElementById("search-container").contains(e.target)) {
+          searchResults.style.display = "none";
+        }
+        if (e.target == modal) {
+          modal.classList.remove("show");
+        }
+      };
       if (closeBtn) {
         closeBtn.onclick = function () {
           modal.classList.remove("show");
         };
       }
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.classList.remove("show");
-        }
-      };
     };
   </script>
 </body>
