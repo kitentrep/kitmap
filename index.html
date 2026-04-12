@@ -141,6 +141,13 @@
       stroke-width: 1px;
     }
 
+    .building-path.highlight-blue,
+    .facility-marker.highlight-blue {
+      fill: #3498db !important;
+      filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.7));
+      transition: fill 0.3s ease, filter 0.3s ease;
+    }
+
     .building-label {
       font-size: 14px;
       /* 約2倍 (元13.2px) */
@@ -801,11 +808,46 @@
         updateTransform();
       }
 
+      const kitInternalFacilities = [
+        { name: "自習室", buildingId: "7" },
+        { name: "地下スタジオ", buildingId: "7" },
+        { name: "多目的ホール", buildingId: "6" },
+        { name: "AI情報技術教育センター", buildingId: "6" },
+        { name: "大学事務局", buildingId: "1" },
+        { name: "防災センター", buildingId: "1" },
+        { name: "自己開発センター", buildingId: "8" },
+        { name: "西南ラウンジ", buildingId: "8" },
+        { name: "パソコンセンター", buildingId: "8" },
+        { name: "進路開発センター", buildingId: "10" },
+        { name: "進路開発室キャリアプラザ", buildingId: "10" },
+        { name: "扇が丘診療所", buildingId: "11" },
+        { name: "イノベーションホール", buildingId: "12" },
+        { name: "アントレプレナーズラボ", buildingId: "12" },
+        { name: "SDGs推進センター", buildingId: "12" },
+        { name: "学生ステーション", buildingId: "23" },
+        { name: "留学支援・国際交流センター", buildingId: "23" },
+        { name: "イノベーション＆デザインスタジオ", buildingId: "23" },
+        { name: "プロジェクト教育センター", buildingId: "24" },
+        { name: "Yショップ ACQUA店", buildingId: "27" },
+        { name: "学生ラウンジ", buildingId: "27" },
+        { name: "えふえむ･エヌ･ワン", buildingId: "28" },
+        { name: "カウンセリングセンター", buildingId: "36" },
+        { name: "夢考房", buildingId: "41" }
+      ];
+
       // --- Search Implementation ---
-      const searchData = Object.keys(kitFullNames).map(id => ({
-        id: String(id),
-        name: kitFullNames[id]
-      })).filter(item => {
+      const searchData = [
+        ...Object.keys(kitFullNames).map(id => ({
+          id: String(id),
+          name: kitFullNames[id],
+          type: 'standard'
+        })),
+        ...kitInternalFacilities.map(f => ({
+          id: f.buildingId,
+          name: f.name,
+          type: 'internal'
+        }))
+      ].filter(item => {
         return item.id && !item.id.includes("Rectangle") && !item.id.includes("road") && !item.id.includes("corridor");
       });
       console.log("KIT Map: Search data initialized", searchData.length, "items");
@@ -847,11 +889,21 @@
         searchResults.style.display = "block";
       }
 
+      let activeHighlight = null;
+
+      function clearHighlight() {
+        if (activeHighlight) {
+          activeHighlight.classList.remove("highlight-blue");
+          activeHighlight = null;
+        }
+      }
+
       function selectResult(item) {
         console.log("KIT Map: Selected search result", item);
+        clearHighlight();
         const targetElement = document.getElementById(item.id) || document.querySelector(`[id="${item.id}"]`);
         if (targetElement) {
-          focusElement(targetElement);
+          focusElement(targetElement, true);
         } else {
           console.warn("KIT Map: Target element not found for ID", item.id);
         }
@@ -860,7 +912,7 @@
         searchResults.style.display = "none";
       }
 
-      function focusElement(el) {
+      function focusElement(el, highlight = false) {
         const bbox = el.getBBox();
         const centerX = bbox.x + bbox.width / 2;
         const centerY = bbox.y + bbox.height / 2;
@@ -868,6 +920,14 @@
         pointX = (688 / 2) - (centerX * scale);
         pointY = (886 / 2) - (centerY * scale);
         updateTransform();
+
+        if (highlight) {
+          el.classList.add("highlight-blue");
+          activeHighlight = el;
+          // Clear highlight after 3 seconds or when modal is closed
+          setTimeout(clearHighlight, 3000);
+        }
+
         setTimeout(() => {
           el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
         }, 100);
@@ -1307,11 +1367,13 @@
         }
         if (e.target == modal) {
           modal.classList.remove("show");
+          clearHighlight();
         }
       };
       if (closeBtn) {
         closeBtn.onclick = function () {
           modal.classList.remove("show");
+          clearHighlight();
         };
       }
     };
