@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kitentrep.github.io/kitmap/sitemap.xml
+Sitemap: https://kit-campus-map.pages.dev/sitemap.xml
