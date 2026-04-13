@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search Test</title>
+    <style>
+        #search-results {
+            background: white;
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        .search-result-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .search-result-item:hover {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="search-input" placeholder="Search for '23'...">
+    <div id="search-results"></div>
+
+    <script>
+        const kitFullNames = {
+            "1": "1号館",
+            "23": "23号館",
+            "41": "41号館"
+        };
+
+        const searchInput = document.getElementById("search-input");
+        const searchResults = document.getElementById("search-results");
+
+        const searchData = Object.keys(kitFullNames).map(id => ({
+            id: String(id),
+            name: kitFullNames[id]
+        }));
+
+        searchInput.oninput = function() {
+            const query = this.value.trim().toLowerCase();
+            if (query.length > 0) {
+                const filtered = searchData.filter(item => 
+                    item.name.toLowerCase().includes(query) || 
+                    item.id.toLowerCase().includes(query)
+                );
+                displayResults(filtered);
+            } else {
+                searchResults.style.display = "none";
+            }
+        };
+
+        function displayResults(results) {
+            searchResults.innerHTML = "";
+            if (results.length === 0) {
+                searchResults.style.display = "none";
+                return;
+            }
+            results.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "search-result-item";
+                div.textContent = item.name;
+                div.onclick = function() {
+                    alert("Selected: " + item.name);
+                    searchInput.value = "";
+                    searchResults.style.display = "none";
+                };
+                searchResults.appendChild(div);
+            });
+            searchResults.style.display = "block";
+        }
+    </script>
+</body>
+</html>

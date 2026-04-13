@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kit-campus-map.pages.dev/sitemap.xml
+Sitemap: https://kitmap.kit-kigyoubu.workers.dev/sitemap.xml
