@@ -295,7 +295,7 @@
 
     .modal.show {
       display: flex;
-      pointer-events: auto;
+      pointer-events: auto; /* Allow interaction when visible */
     }
 
     /* Side Panel for Desktop */
@@ -303,21 +303,25 @@
       .modal {
         top: var(--header-height);
         bottom: auto;
-        width: 420px;
+        width: 400px;
         height: calc(100vh - var(--header-height));
-        align-items: center; /* Center horizontally in its sidebar column */
+        align-items: flex-start;
         justify-content: flex-start;
+        pointer-events: none; /* Base is none */
+      }
+
+      .modal.show {
+        pointer-events: auto; /* Enable interaction only when visible */
       }
 
       .modal-content {
-        height: calc(100vh - var(--header-height)) !important;
-        max-height: none !important;
+        height: 100% !important;
         width: 100% !important;
         border-radius: 0 20px 20px 0 !important;
         transform: translateX(-100%);
         box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
-        overflow-y: auto !important; /* Forces scrollbar if content is long */
-        padding-bottom: 80px !important; /* Extra bottom padding for scroll space */
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
       }
 
       .modal.show .modal-content {
@@ -335,7 +339,7 @@
       border: none;
       width: 100%;
       height: 100%;
-      max-height: 100%;
+      max-width: none;
       overflow-y: auto;
       border-radius: 20px 20px 0 0;
       position: relative;
@@ -346,15 +350,8 @@
     }
 
     .modal.show .modal-content {
-      /* Mobile default, will be overridden by desktop media query above */
       transform: translateY(0);
     }
-    
-    /* Body lock */
-    body.modal-open {
-      overflow: hidden !important;
-    }
-
 
     /* モーダルの上のつまみ棒 */
     .modal-content::before {
@@ -1741,7 +1738,6 @@
 
             document.getElementById("modal-description").innerHTML = descHTML;
             document.getElementById("modal").classList.add("show");
-            document.body.classList.add("modal-open");
           };
         }
       });
@@ -1753,14 +1749,12 @@
         }
         if (e.target == modal) {
           modal.classList.remove("show");
-          document.body.classList.remove("modal-open");
           clearHighlight();
         }
       };
       if (closeBtn) {
         closeBtn.onclick = function () {
           modal.classList.remove("show");
-          document.body.classList.remove("modal-open");
           clearHighlight();
         };
       }
