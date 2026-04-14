@@ -303,25 +303,26 @@
       .modal {
         top: var(--header-height);
         bottom: auto;
-        width: 400px;
+        width: 420px;
         height: calc(100vh - var(--header-height));
         align-items: flex-start;
         justify-content: flex-start;
-        pointer-events: none; /* Base is none */
+        pointer-events: none;
       }
 
       .modal.show {
-        pointer-events: auto; /* Enable interaction only when visible */
+        pointer-events: auto;
       }
 
       .modal-content {
         height: 100% !important;
         width: 100% !important;
-        border-radius: 0 20px 20px 0 !important;
+        border-radius: 0 0 0 0 !important; /* 角を削ってサイドバー感を出す */
+        border-right: 1px solid #eee;
         transform: translateX(-100%);
-        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.05);
         overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
+        touch-action: auto !important; /* Mapのtouch-action: noneを上書き */
       }
 
       .modal.show .modal-content {
@@ -1741,6 +1742,17 @@
           };
         }
       });
+
+      // モーダル内のスクロールや操作が地図（SVG）に伝わらないようにする
+      const modalContent = document.querySelector(".modal-content");
+      if (modalContent) {
+        // これらのイベントが親（SVGのパン・ズーム等）に伝わるのを阻止
+        ['wheel', 'mousedown', 'mousemove', 'mouseup', 'touchstart', 'touchmove', 'touchend'].forEach(evtName => {
+          modalContent.addEventListener(evtName, (e) => {
+            e.stopPropagation();
+          }, { passive: false });
+        });
+      }
 
       // 画面クリックで閉じる処理
       window.onclick = function (e) {
