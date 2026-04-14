@@ -287,7 +287,7 @@
       width: 100%;
       height: 35vh;
       background-color: transparent;
-      pointer-events: none;
+      pointer-events: none; /* デフォルトでは下の地図を触れるように */
       align-items: flex-end;
       justify-content: center;
     }
@@ -322,6 +322,7 @@
 
     .modal.show {
       display: flex;
+      pointer-events: auto; /* 表示中はモーダル内を触れるように */
     }
 
     .modal-content {
@@ -648,8 +649,6 @@
           <path id="Rectangle 30" d="M259 219.541H272V227.541H259V219.541Z" fill="#F66C28" />
           <g id="6LC">
             <path d="M135 243.541H237V312.541H135V312.541Z" fill="#F66C28" />
-            <!-- PMC Marker -->
-            <circle id="PMC" cx="186" cy="278" r="12" fill="#333" class="facility-marker" />
           </g>
           <g id="Rectangle 26">
             <path d="M423 67.5406H472V76.5406H423V67.5406Z" fill="#F66C28" />
@@ -1418,13 +1417,6 @@
               descHTML += `<table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 16px; text-align: center;"><tr style="background: #f66c28; color: white;"><th style="padding: 12px; border: 1px solid #ddd;"></th><th style="padding: 12px; border: 1px solid #ddd;">平日</th><th style="padding: 12px; border: 1px solid #ddd;">土曜日</th><th style="padding: 12px; border: 1px solid #ddd;">日曜日・休日</th></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#cc0000; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">郵便</span>郵便窓口</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:00</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">貯金</span>貯金窓口</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#009900; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">ATM</span>ATM</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜17:30</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜12:30</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr><tr><td style="padding: 12px; border: 1px solid #ddd; text-align: left; white-space: nowrap;"><span style="background:#0000cc; color:white; padding:4px 8px; border-radius:4px; font-size:20px; margin-right:8px;">保険</span>保険窓口</td><td style="padding: 12px; border: 1px solid #ddd;">9:00〜16:00</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td><td style="padding: 12px; border: 1px solid #ddd;">お取り扱いしません</td></tr></table>`;
             } else if (id === "bus_2") {
               descHTML += `<div style="margin-top: 20px; font-size: 14px; color: #555;">到着予想時刻：74号館+28，61号館+29,65号館+30</div><h4 style="margin-top: 30px; margin-bottom: 16px; color: #333; font-size: 22px; border-left: 8px solid #f66c28; padding-left: 16px;">23号館→八束穂（平日）</h4><div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 16px;"><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:20</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">8:40</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:20</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">9:40</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">10:40</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:00</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">12:30</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">13:20</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">15:10</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">16:30</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:10</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">17:50</span><span style="background: #f0f0f0; border: 1px solid #ddd; padding: 12px 24px; border-radius: 8px;">19:10</span></div>`;
-            } else if (id === "6LC") {
-              descHTML += `<table style="width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 16px; text-align: center;"><tr><th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0; width: 35%;">平日</th><td style="padding: 16px; border: 1px solid #ddd;">8:30〜22:00</td></tr><tr><th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">土曜日</th><td style="padding: 16px; border: 1px solid #ddd;">8:30〜17:00</td></tr><tr><th style="padding: 16px; border: 1px solid #ddd; background: #f0f0f0;">日・祝日</th><td style="padding: 16px; border: 1px solid #ddd;">10:00〜17:00</td></tr></table><div style="margin-top: 16px; font-size: 16px; color: #d9534f; text-align: right;">※長期休み中は時間が変更されます。</div><div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;"><h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4><div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">2階 ライブラリーセンター内</div></div><div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;"><h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;"><span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>AED設置場所</h4><div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">1階</div></div>`;
-            } else if (id === "6") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 22px;">多目的ホール <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">6号館3階</span></h4>
-                  <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;"><h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4><div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">1階 AI情報技術教育センター事務室前</div></div>
                   <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;"><h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;"><span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>AED設置場所</h4><div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">1階</div></div>
                 </div>
               `;
@@ -1447,6 +1439,48 @@
                   <div style="background: #f4f4f4; padding: 12px 20px; font-size: 14px; margin-top: 16px;"><strong>■窓口対応時間</strong><br>[平日] 8:30〜17:20 / [土曜日] 8:30〜13:00</div>
                   <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #eee;"><h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所（A3、A4のみ）</h4><div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2;">2階 大学事務局窓口前</div></div>
                   <div style="margin-top: 24px; padding-top: 24px; border-top: 1px dotted #ccc;"><h4 style="margin: 0 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;"><span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>AED設置場所</h4><div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">1階 防災センター入口</div></div>
+                </div>
+              `;
+            } else if (id === "6LC" || id === "6") {
+              descHTML += `
+                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333; display: flex; flex-direction: column; gap: 30px;">
+                  <!-- ライブラリーセンター本体 -->
+                  <div>
+                    <h4 style="margin: 0 0 12px 0; font-size: 22px;">
+                      ライブラリーセンター <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">6号館</span>
+                    </h4>
+                    <div style="background: #f4f4f4; padding: 12px 20px; font-size: 14px;">
+                      <strong>■開館時間</strong><br>
+                      [平日] 8:30〜22:00 / [土曜日] 8:30〜20:00 / [日曜日] 9:00〜17:00
+                    </div>
+                  </div>
+
+                  <!-- PMC セクション -->
+                  <div style="border-top: 2px solid var(--orange-light); margin-top: 10px; padding-top: 25px;">
+                    <div style="background: var(--orange); color: white; padding: 15px 20px; border-radius: 12px; margin-bottom: 20px;">
+                      <h4 style="margin: 0; font-size: 22px;">🎧 PMC (ポピュラー音楽方式)</h4>
+                      <p style="margin: 5px 0 0 0; font-size: 13px; opacity: 0.9;">Popular Music Collection | LC内</p>
+                    </div>
+                    <div style="background: #fdf2f2; border-left: 4px solid var(--orange); padding: 15px; font-size: 14px; line-height: 1.8;">
+                      <strong>■開館時間</strong><br>
+                      [月曜〜土曜] 8:30 〜 17:00<br>
+                      [日曜・祝日] 10:00 〜 17:00<br>
+                      <span style="color: #c0392b; font-size: 12px; font-weight: bold;">※ライブラリーセンター開館カレンダーに準じます</span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 15px; color: #555;">
+                      レコード24万枚以上を収蔵。リスニングチェアで、最高の音質を体験できます。
+                    </p>
+                  </div>
+
+                  <!-- その他施設 -->
+                  <div style="border-top: 1px solid #eee; padding-top: 25px;">
+                    <h4 style="margin: 0 0 12px 0; font-size: 20px;">■プリンタ設置場所</h4>
+                    <div style="background: #eef2f7; padding: 12px 20px; font-size: 14px; border-left: 4px solid #4a90e2; margin-bottom: 15px;">
+                      2階 ラーニングコモンズ
+                    </div>
+                    <h4 style="margin: 15px 0 12px 0; font-size: 20px; color: #d93025; display: flex; align-items: center;"><span style="background: #d93025; color: white; padding: 2px 8px; border-radius: 4px; font-size: 14px; margin-right: 10px;">AED</span>AED設置場所</h4>
+                    <div style="background: #fdf2f2; padding: 12px 20px; font-size: 14px; border-left: 4px solid #d93025;">1階 入口</div>
+                  </div>
                 </div>
               `;
             } else if (id === "23") {
@@ -1699,51 +1733,12 @@
                   </div>
                 </div>
                 `;
-            } else if (id === "PMC") {
-              descHTML += `
-                <div style="margin-top: 20px; color: #333;">
-                  <div style="background: var(--orange); color: white; padding: 15px 20px; border-radius: 12px; margin-bottom: 25px;">
-                    <h4 style="margin: 0; font-size: 24px;">🎧 PMC (Popular Music Collection)</h4>
-                    <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">ライブラリーセンター内</p>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <section>
-                      <h5 style="margin: 0 0 10px 0; color: var(--orange); font-size: 18px;">開館時間</h5>
-                      <div style="background: #f8f8f8; padding: 15px; border-radius: 8px; font-size: 15px; line-height: 1.8;">
-                        <strong>月曜〜土曜:</strong> 8:30 〜 17:00<br>
-                        <strong>日曜・祝日:</strong> 10:00 〜 17:00<br>
-                        <span style="color: #666; font-size: 13px;">※詳細はライブラリーセンター開館カレンダーをご確認ください。</span>
-                      </div>
-                    </section>
-                    <section>
-                      <h5 style="margin: 0 0 10px 0; color: var(--orange); font-size: 18px;">施設概要</h5>
-                      <p style="margin: 0; font-size: 15px; color: #555;">
-                        レコード24万枚以上を収蔵する、世界トップクラスのポピュラー音楽コレクションです。専用のリスニングチェアで、最高の音質と空間を楽しむことができます。
-                      </p>
-                    </section>
-                  </div>
-                </div>
-              `;
-            } else if (id === "20") {
-              descHTML += `
-                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
-                  <h4 style="margin: 0 0 12px 0; font-size: 22px;">
-                    スポーツ考房トレーニングルーム <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 16px;">第2体育館2階 (20号館)</span>
-                  </h4>
-                  <div style="background: #f4f4f4; padding: 16px 20px; font-size: 14px; margin-top: 16px;">
-                    <strong>■利用時間</strong><br>
-                    [平日] 17:30〜20:00 （学生休業期間中：9:00〜17:00）<br>
-                    [土曜日] 9:00〜16:00 （学生休業期間中：9:00〜13:00）
-                  </div>
-                </div>
-              `;
-            }
-
             document.getElementById("modal-description").innerHTML = descHTML;
             document.getElementById("modal").classList.add("show");
           };
         }
       });
+
 
       // 画面クリックで閉じる処理
       window.onclick = function (e) {
