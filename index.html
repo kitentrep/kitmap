@@ -281,16 +281,43 @@
     .modal {
       display: none;
       position: fixed;
-      z-index: 1000;
+      z-index: 3000; /* ヘッダーより上 */
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 25vh;
-      /* 少し高さを増やして大きな文字に対応 */
+      height: 35vh;
       background-color: transparent;
       pointer-events: none;
       align-items: flex-end;
       justify-content: center;
+    }
+
+    /* 横長画面（デスクトップ）用のサイド表示 */
+    @media (min-width: 1025px) {
+      .modal {
+        top: var(--header-height);
+        bottom: auto;
+        width: 400px;
+        height: calc(100vh - var(--header-height));
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .modal-content {
+        height: 100% !important;
+        width: 100% !important;
+        border-radius: 0 20px 20px 0 !important;
+        transform: translateX(-100%);
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal.show .modal-content {
+        transform: translateX(0) !important;
+      }
+
+      .modal-content::before {
+        display: none; /* サイド時はハンドル不要 */
+      }
     }
 
     .modal.show {
@@ -309,7 +336,7 @@
       position: relative;
       box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
       transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       pointer-events: auto;
     }
 
@@ -621,6 +648,8 @@
           <path id="Rectangle 30" d="M259 219.541H272V227.541H259V219.541Z" fill="#F66C28" />
           <g id="6LC">
             <path d="M135 243.541H237V312.541H135V312.541Z" fill="#F66C28" />
+            <!-- PMC Marker -->
+            <circle id="PMC" cx="186" cy="278" r="12" fill="#333" class="facility-marker" />
           </g>
           <g id="Rectangle 26">
             <path d="M423 67.5406H472V76.5406H423V67.5406Z" fill="#F66C28" />
@@ -1670,6 +1699,31 @@
                   </div>
                 </div>
                 `;
+            } else if (id === "PMC") {
+              descHTML += `
+                <div style="margin-top: 20px; color: #333;">
+                  <div style="background: var(--orange); color: white; padding: 15px 20px; border-radius: 12px; margin-bottom: 25px;">
+                    <h4 style="margin: 0; font-size: 24px;">🎧 PMC (Popular Music Collection)</h4>
+                    <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">ライブラリーセンター内</p>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <section>
+                      <h5 style="margin: 0 0 10px 0; color: var(--orange); font-size: 18px;">開館時間</h5>
+                      <div style="background: #f8f8f8; padding: 15px; border-radius: 8px; font-size: 15px; line-height: 1.8;">
+                        <strong>月曜〜土曜:</strong> 8:30 〜 17:00<br>
+                        <strong>日曜・祝日:</strong> 10:00 〜 17:00<br>
+                        <span style="color: #666; font-size: 13px;">※詳細はライブラリーセンター開館カレンダーをご確認ください。</span>
+                      </div>
+                    </section>
+                    <section>
+                      <h5 style="margin: 0 0 10px 0; color: var(--orange); font-size: 18px;">施設概要</h5>
+                      <p style="margin: 0; font-size: 15px; color: #555;">
+                        レコード24万枚以上を収蔵する、世界トップクラスのポピュラー音楽コレクションです。専用のリスニングチェアで、最高の音質と空間を楽しむことができます。
+                      </p>
+                    </section>
+                  </div>
+                </div>
+              `;
             } else if (id === "20") {
               descHTML += `
                 <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
