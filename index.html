@@ -12,6 +12,7 @@
   <link rel="icon" href="favicon.png" type="image/png" sizes="192x192" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" href="favicon.png" />
+  <link rel="manifest" href="manifest.json" />
   <title>【非公式】金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内・営業時間</title>
   <meta name="description"
     content="金沢工業大学（KIT）扇が丘キャンパスの非公式マップアプリです。構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ（アクア）、学食（ラテラ・イルソーレ）、郵便局などの施設案内・営業時間を手軽に確認できます。" />
@@ -1880,10 +1881,28 @@
       }
 
       // Install Link Logic (Instructions for Home Screen)
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent default browser prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+      });
+
       const installBtn = document.getElementById("pwa-install-btn");
       if (installBtn) {
         installBtn.onclick = function (e) {
           e.preventDefault();
+
+          // Performance programmatic install if available (Android/Chrome)
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+              deferredPrompt = null;
+            });
+            return;
+          }
+
           const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
           const isAndroid = /Android/.test(navigator.userAgent);
 
@@ -1895,6 +1914,13 @@
             alert("ブラウザのメニューから『ホーム画面に追加』を選択すると、このマップをアプリのように利用できます。");
           }
         };
+      }
+
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
       }
     };
 
