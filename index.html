@@ -1081,7 +1081,9 @@
         <li><a href="#" onclick="showBuilding('41'); return false;">夢考房</a></li>
         <li><a href="#" onclick="showBuilding('コンビニ'); return false;">コンビニ（アクア）</a></li>
         <li><a href="#" onclick="showBuilding('ラテラ'); return false;">学食（ラテラ）</a></li>
+        <li><a href="#" onclick="showBuilding('イルソーレ'); return false;">学食（イルソーレ）</a></li>
       </ul>
+
     </div>
     <div class="footer-links">
       <h4>外部リンク</h4>
@@ -1814,7 +1816,38 @@
                   </div>
                 </div>
                 `;
+            } else if (id === "ラテラ") {
+              descHTML += `
+                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 16px;">
+                    <strong style="display: block; margin-bottom: 8px; color: var(--orange);">■平日</strong>
+                    <div style="padding-left: 12px; border-left: 3px solid #eee;">
+                      <div style="display: flex; justify-content: space-between; max-width: 280px;"><span>モーニング</span> <strong>8:00 - 10:00</strong></div>
+                      <div style="display: flex; justify-content: space-between; max-width: 280px;"><span>ランチ</span> <strong>10:00 - 15:00</strong></div>
+                      <div style="display: flex; justify-content: space-between; max-width: 280px;"><span>ディナー</span> <strong>16:00 - 19:00</strong></div>
+                    </div>
+                  </div>
+                  <div>
+                    <strong style="display: block; margin-bottom: 8px; color: var(--orange);">■土曜</strong>
+                    <div style="padding-left: 12px; border-left: 3px solid #eee;">
+                      <div style="display: flex; justify-content: space-between; max-width: 280px;"><span>営業時間</span> <strong>10:00 - 13:00</strong></div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            } else if (id === "イルソーレ") {
+              descHTML += `
+                <div style="margin-top: 30px; font-size: 16px; line-height: 1.6; color: #333;">
+                  <div style="margin-bottom: 16px;">
+                    <strong style="display: block; margin-bottom: 8px; color: var(--orange);">■平日</strong>
+                    <div style="padding-left: 12px; border-left: 3px solid #eee;">
+                      <div style="display: flex; justify-content: space-between; max-width: 280px;"><span>ランチ</span> <strong>10:00 - 14:00</strong></div>
+                    </div>
+                  </div>
+                </div>
+              `;
             } else if (id === "PMC") {
+
               // Now handled within 6LC block, but kept for direct links if any
               showBuilding("6LC");
               return;
