@@ -124,6 +124,104 @@
       color: var(--orange);
     }
 
+    /* Menu Toggle (Hamburger) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 10px;
+      z-index: 2100;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        height: 0;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 2050;
+      }
+
+      .nav-links.is-active {
+        height: auto;
+        opacity: 1;
+        pointer-events: auto;
+        padding-bottom: 30px;
+        padding-top: 10px;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+      }
+
+      .nav-links.is-active li {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Sequential animation for links */
+      .nav-links.is-active li:nth-child(1) { transition-delay: 0.1s; }
+      .nav-links.is-active li:nth-child(2) { transition-delay: 0.15s; }
+      .nav-links.is-active li:nth-child(3) { transition-delay: 0.2s; }
+      .nav-links.is-active li:nth-child(4) { transition-delay: 0.25s; }
+
+      .nav-links a {
+        display: block;
+        padding: 15px;
+        font-size: 1.1rem;
+        width: 100%;
+        color: var(--text);
+      }
+
+      /* Hamburger Animation */
+      .navbar.is-active .menu-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+        background: var(--orange);
+      }
+      .navbar.is-active .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      .navbar.is-active .menu-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+        background: var(--orange);
+      }
+    }
+
+
     /* Main Content */
     #main {
       width: 100%;
@@ -560,7 +658,13 @@
       <li><a href="#sitemap">サイトマップ</a></li>
       <li><a href="https://www.kanazawa-it.ac.jp/" target="_blank">大学公式サイト</a></li>
     </ul>
+    <button class="menu-toggle" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
 
   <main id="main">
     <section class="map-section">
@@ -1708,7 +1812,41 @@
           clearHighlight();
         };
       }
+
+      // Hamburger Menu Toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      const navbar = document.querySelector(".navbar");
+
+      if (menuToggle && navLinks && navbar) {
+        menuToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          navLinks.classList.toggle("is-active");
+          navbar.classList.toggle("is-active");
+          // Prevent body scroll when menu is active
+          document.body.style.overflow = navLinks.classList.contains("is-active") ? "hidden" : "";
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("is-active");
+            navbar.classList.remove("is-active");
+            document.body.style.overflow = "";
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+          if (navLinks.classList.contains("is-active") && !navbar.contains(e.target)) {
+            navLinks.classList.remove("is-active");
+            navbar.classList.remove("is-active");
+            document.body.style.overflow = "";
+          }
+        });
+      }
     };
+
   </script>
 </body>
 
