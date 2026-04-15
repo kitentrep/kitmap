@@ -241,6 +241,16 @@
       }
     }
 
+    .mobile-only {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-only {
+        display: block !important;
+      }
+    }
+
 
 
     /* Main Content */
@@ -1039,7 +1049,9 @@
         <li><a href="#">マップトップ</a></li>
         <li><a href="#mission">ミッション</a></li>
         <li><a href="#search-input">施設検索</a></li>
+        <li class="mobile-only"><a href="#" id="pwa-install-btn">インストール</a></li>
       </ul>
+
     </div>
     <div class="footer-links">
       <h4>主要施設</h4>
@@ -1865,6 +1877,24 @@
             document.body.style.overflow = "";
           }
         });
+      }
+
+      // Install Link Logic (Instructions for Home Screen)
+      const installBtn = document.getElementById("pwa-install-btn");
+      if (installBtn) {
+        installBtn.onclick = function (e) {
+          e.preventDefault();
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+          const isAndroid = /Android/.test(navigator.userAgent);
+
+          if (isIOS) {
+            alert("iOSでこのアプリを「インストール」するには：\n1. ブラウザ下部の『共有ボタン（角丸に上矢印）』をタップします\n2. 『ホーム画面に追加』を選択します\nこれで、アプリのようにアイコンから直接開けるようになります！");
+          } else if (isAndroid) {
+            alert("Androidでこのアプリを「インストール」するには：\n1. ブラウザのメニュー（縦の…など）ボタンをタップします\n2. 『アプリをインストール』または『ホーム画面に追加』をタップします\nこれで、ホーム画面から直接開けるようになります！");
+          } else {
+            alert("ブラウザのメニューから『ホーム画面に追加』を選択すると、このマップをアプリのように利用できます。");
+          }
+        };
       }
     };
 
