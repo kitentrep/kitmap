@@ -339,36 +339,37 @@
       display: block;
     }
 
-    /* Map Controls Footer (New) */
-    .map-controls-footer {
-      position: absolute;
-      bottom: 30px;
-      right: 20px;
-      z-index: 1000;
+    /* Navbar Actions (New) */
+    .nav-actions {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      align-items: center;
+      gap: 5px;
     }
 
-    .control-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: white;
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      background: none;
       border: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: var(--orange);
-      transition: all 0.3s;
+      color: var(--text);
+      transition: color 0.3s;
+      border-radius: 50%;
     }
 
-    .control-btn:active {
-      transform: scale(0.9);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    .nav-btn:hover {
+      background: rgba(0,0,0,0.05);
+      color: var(--orange);
     }
+
+    .nav-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
 
 
     .close {
@@ -742,11 +743,19 @@
       <li><a href="#sitemap">サイトマップ</a></li>
       <li><a href="https://www.kanazawa-it.ac.jp/" target="_blank">大学公式サイト</a></li>
     </ul>
-    <button class="menu-toggle" aria-label="メニューを開く">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-actions">
+      <button id="search-toggle-btn" class="nav-btn" aria-label="検索を開く">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <button class="menu-toggle" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
 
 
@@ -766,14 +775,6 @@
         <div id="search-results"></div>
       </div>
 
-      <!-- Map Controls Footer -->
-      <div class="map-controls-footer">
-        <button id="search-toggle-btn" class="control-btn" aria-label="検索を開く">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </button>
       </div>
 
       <div id="map-container">
