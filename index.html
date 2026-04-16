@@ -242,7 +242,7 @@
       left: 0;
       bottom: 0;
       width: 100%;
-      height: 35vh;
+      height: 50vh; /* Changed from 35vh to 50vh per user request */
       background-color: transparent;
       pointer-events: none;
       align-items: flex-end;
@@ -323,6 +323,53 @@
       background-color: #e0e0e0;
       border-radius: 3px;
     }
+
+    #search-container {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: 90%;
+      max-width: 500px;
+      display: none; /* Hidden by default V3 */
+    }
+
+    #search-container.show {
+      display: block;
+    }
+
+    /* Map Controls Footer (New) */
+    .map-controls-footer {
+      position: absolute;
+      bottom: 30px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .control-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--orange);
+      transition: all 0.3s;
+    }
+
+    .control-btn:active {
+      transform: scale(0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
 
     .close {
       color: #aaa;
@@ -717,6 +764,16 @@
           </div>
         </div>
         <div id="search-results"></div>
+      </div>
+
+      <!-- Map Controls Footer -->
+      <div class="map-controls-footer">
+        <button id="search-toggle-btn" class="control-btn" aria-label="検索を開く">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
       </div>
 
       <div id="map-container">
@@ -1239,6 +1296,18 @@
       const searchInput = document.getElementById("search-input");
       const searchClear = document.getElementById("search-clear");
       const searchResults = document.getElementById("search-results");
+      const searchContainer = document.getElementById("search-container");
+      const searchToggleBtn = document.getElementById("search-toggle-btn");
+
+      if (searchToggleBtn && searchContainer) {
+        searchToggleBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          searchContainer.classList.toggle("show");
+          if (searchContainer.classList.contains("show")) {
+            searchInput.focus();
+          }
+        });
+      }
 
       if (!svg || !viewport) {
         console.error("KIT Map: Required SVG elements not found");
@@ -1392,6 +1461,7 @@
         searchInput.value = "";
         searchClear.style.display = "none";
         searchResults.style.display = "none";
+        if (searchContainer) searchContainer.classList.remove("show");
       }
 
       function focusElement(el, highlight = false) {
