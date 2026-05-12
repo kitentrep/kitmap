@@ -1,7 +1,7 @@
 {
   "name": "金沢工業大学（KIT）キャンパスマップ",
   "short_name": "KIT CampusMap",
-  "description": "KITの構内図、施設案内、営業時間を手軽に確認できる非公式マップアプリです。",
+  "description": "KITの構内図、施設案内、営業時間を手軽に確認できるマップアプリです。",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

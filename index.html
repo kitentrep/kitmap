@@ -13,32 +13,45 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="manifest" href="manifest.json" />
-  <title>金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内・営業時間</title>
+  <title>金沢工業大学（KIT）キャンパスマップ｜スマホでサクサク！構内図・施設案内</title>
   <meta name="description"
-    content="金沢工業大学（KIT）扇が丘キャンパスのマップアプリです。構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ（アクア）、学食（ラテラ・イルソーレ）、郵便局などの施設案内・営業時間を手軽に確認できます。" />
+    content="金沢工業大学（KIT）扇が丘キャンパスのマップアプリ。スマホでサクサク動いて迷わない！構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ、学食、郵便局、AEDなどの施設案内・営業時間を手軽に確認できます。学生有志によるプロジェクト。" />
   <meta name="keywords" content="金沢工業大学, KIT, キャンパスマップ, 扇が丘キャンパス, 構内図, 案内, 大学マップ, 営業時間, 施設情報, 5号館, 23号館" />
   <meta name="google-site-verification" content="wlCWO4n2Fgy1Z5xMfduPef0J85fDgwwpBjjZEFCmYp8" />
   <link rel="canonical" href="https://kitmap.kit-kigyoubu.workers.dev/" />
 
   <!-- Open Graph / OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
-  <meta property="og:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できるキャンパスマップです。" />
-  <meta property="og:site_name" content="KIT Campus Map" />
+  <meta property="og:title" content="金沢工業大学（KIT）キャンパスマップ｜スマホでサクサク！構内図・施設案内" />
+  <meta property="og:description" content="金沢工業大学（KIT）扇が丘キャンパスのマップアプリ。スマホでサクサク動いて迷わない！構内図（建物・号館）の場所や施設案内・営業時間を手軽に確認できます。" />
+  <meta property="og:site_name" content="金沢工業大学（KIT）キャンパスマップ" />
   <meta property="og:url" content="https://kitmap.kit-kigyoubu.workers.dev/" />
   <meta property="og:image" content="https://kitmap.kit-kigyoubu.workers.dev/favicon.png" />
+  <meta name="application-name" content="金沢工業大学（KIT）キャンパスマップ">
+  <meta name="apple-mobile-web-app-title" content="金沢工業大学（KIT）キャンパスマップ">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="金沢工業大学（KIT）キャンパスマップ - 構内図・施設案内" />
-  <meta name="twitter:description" content="KITの構内図、施設案内、営業時間をスマホやPCでサクサク確認できるキャンパスマップです。" />
+  <meta name="twitter:title" content="金沢工業大学（KIT）キャンパスマップ｜スマホでサクサク！構内図・施設案内" />
+  <meta name="twitter:description" content="金沢工業大学（KIT）扇が丘キャンパスのマップアプリ。スマホでサクサク動いて迷わない！構内図（建物・号館）の場所や施設案内・営業時間を手軽に確認できます。" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "金沢工業大学（KIT）キャンパスマップ",
+    "alternateName": ["KIT CampusMap", "金沢工業大学キャンパスマップ", "KITキャンパスマップ"],
+    "url": "https://kitmap.kit-kigyoubu.workers.dev/"
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "金沢工業大学（KIT）キャンパスマップ",
     "url": "https://kitmap.kit-kigyoubu.workers.dev/",
-    "description": "金沢工業大学（KIT）扇が丘キャンパスのマップアプリです。構内図、施設案内、営業時間を手軽に確認できます。",
+    "description": "金沢工業大学（KIT）扇が丘キャンパスのマップアプリ。スマホでサクサク動いて迷わない！構内図（建物・号館）の場所や施設案内・営業時間を手軽に確認できます。",
     "applicationCategory": "MapApplication",
     "operatingSystem": "All",
     "author": {
@@ -51,6 +64,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
     :root {
       --bg: #ffffff;
       --panel: #ffffff;
@@ -760,6 +785,7 @@
 
 
   <main id="main">
+    <h1 class="sr-only">金沢工業大学（KIT）キャンパスマップ｜スマホでサクサク！構内図・施設案内・営業時間</h1>
     <section class="map-section">
       <div id="search-container">
         <div class="search-input-wrapper">
@@ -1099,7 +1125,7 @@
 
   </div>
   <div class="disclaimer-bar">
-    本サイトは非公式です。最新の正確な情報は金沢工業大学公式ウェブサイトをご確認ください。
+    最新の正確な情報は金沢工業大学公式ウェブサイトをご確認ください。
   </div>
 </section>
 
@@ -1125,7 +1151,7 @@
     </div>
   </div>
   <div class="disclaimer-bar">
-    本サイトは非公式です。最新の正確な情報は金沢工業大学公式ウェブサイトをご確認ください。
+    最新の正確な情報は金沢工業大学公式ウェブサイトをご確認ください。
   </div>
 </section>
 
@@ -1134,7 +1160,7 @@
     <div class="footer-brand">
       <h2>KIT CampusMap</h2>
       <p style="font-size: 0.9rem; color: #777; line-height: 1.8;">
-        金沢工業大学（KIT）の非公式キャンパスマッププロジェクト。<br>
+        金沢工業大学（KIT）のキャンパスマッププロジェクト。<br>
         広大なキャンパスを、もっと身近に、もっと快適に。
       </p>
     </div>
