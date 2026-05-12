@@ -16,7 +16,7 @@
   <title>金沢工業大学（KIT）キャンパスマップ｜スマホでサクサク！構内図・施設案内</title>
   <meta name="description"
     content="金沢工業大学（KIT）扇が丘キャンパスのマップアプリ。スマホでサクサク動いて迷わない！構内図（建物・号館）の場所や、ライブラリーセンター、コンビニ、学食、郵便局、AEDなどの施設案内・営業時間を手軽に確認できます。学生有志によるプロジェクト。" />
-  <meta name="keywords" content="金沢工業大学, KIT, キャンパスマップ, 扇が丘キャンパス, 構内図, 案内, 大学マップ, 営業時間, 施設情報, 5号館, 23号館" />
+  <meta name="keywords" content="金沢工業大学, KIT, キャンパスマップ, 扇が丘キャンパス, 構内図, 案内, 大学マップ, 営業時間, 施設情報, 5号館, 23号館, 夢考房, ライブラリーセンター, 学食, AED" />
   <meta name="google-site-verification" content="wlCWO4n2Fgy1Z5xMfduPef0J85fDgwwpBjjZEFCmYp8" />
   <link rel="canonical" href="https://kitmap.kit-kigyoubu.workers.dev/" />
 
@@ -58,6 +58,38 @@
       "@type": "Person",
       "name": "kitentrep"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "金沢工業大学（KIT）の構内図・マップはどこで見れますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "本サイト「KIT CampusMap」では、金沢工業大学（扇が丘キャンパス）の最新の構内図をインタラクティブなマップ形式で確認できます。各号館の場所や施設情報をスマホで手軽に検索可能です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "夢考房やライブラリーセンターの場所はどこですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "夢考房は41号館、ライブラリーセンターは6号館にあります。本マップの検索機能で「夢考房」や「6LC」と入力すると、正確な位置が表示されます。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "学食やコンビニの営業時間は確認できますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい、マップ上のアイコンや施設名をクリック（タップ）することで、営業時間や提供サービスなどの詳細情報を確認いただけます。"
+        }
+      }
+    ]
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1155,6 +1187,24 @@
   </div>
 </section>
 
+<section id="faq" class="content-section" style="background: #f9f9f9; border-radius: 40px 40px 0 0; margin-top: -40px; position: relative; z-index: 2;">
+  <h2 class="section-title">よくある質問</h2>
+  <div class="faq-container" style="display: grid; gap: 30px; margin-top: 40px;">
+    <div class="faq-item" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+      <h3 style="color: var(--orange); margin-top: 0; font-size: 1.1rem;">Q. 構内図（建物名・号館）はどのように探せばよいですか？</h3>
+      <p style="margin-bottom: 0;">画面右上の検索アイコンをタップし、号館番号（例：「5」）や施設名（例：「夢考房」）を入力してください。マップ上の該当箇所が強調表示されます。</p>
+    </div>
+    <div class="faq-item" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+      <h3 style="color: var(--orange); margin-top: 0; font-size: 1.1rem;">Q. 施設の営業時間や詳細を知りたい。</h3>
+      <p style="margin-bottom: 0;">マップ上の建物をタップするか、検索結果から施設を選択してください。画面下部（PCは左側）に詳細パネルが表示され、営業時間や施設内容を確認できます。</p>
+    </div>
+    <div class="faq-item" style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+      <h3 style="color: var(--orange); margin-top: 0; font-size: 1.1rem;">Q. AEDや喫煙所の場所はわかりますか？</h3>
+      <p style="margin-bottom: 0;">検索バーに「AED」や「喫煙所」と入力してください。学内各所にある設置場所がマップ上に青くハイライトされます。</p>
+    </div>
+  </div>
+</section>
+
 <footer id="sitemap" class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
@@ -1165,7 +1215,7 @@
       </p>
     </div>
     <div class="footer-links">
-      <h4>サイトマップ</h4>
+      <h3>サイトマップ</h3>
       <ul>
         <li><a href="#">マップトップ</a></li>
         <li><a href="#mission">ミッション</a></li>
@@ -1175,7 +1225,7 @@
 
     </div>
     <div class="footer-links">
-      <h4>主要施設</h4>
+      <h3>主要施設</h3>
       <ul>
         <li><a href="#" onclick="showBuilding('6LC'); return false;">ライブラリーセンター</a></li>
         <li><a href="#" onclick="showBuilding('41'); return false;">夢考房</a></li>
@@ -1186,7 +1236,7 @@
 
     </div>
     <div class="footer-links">
-      <h4>外部リンク</h4>
+      <h3>外部リンク</h3>
       <ul>
         <li><a href="https://www.kanazawa-it.ac.jp/" target="_blank">大学公式サイト</a></li>
         <li><a href="https://www.kanazawa-it.ac.jp/kitnews/" target="_blank">KITニュース</a></li>
