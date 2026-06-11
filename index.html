@@ -96,6 +96,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Google AdSense Layout Styles */
+    .adsense-container {
+      margin-top: 30px;
+      padding: 15px 0;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      text-align: center;
+      min-height: 100px;
+      clear: both;
+    }
+    .adsense-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
     .sr-only {
       position: absolute;
       width: 1px;
@@ -785,6 +803,8 @@
       }
     }
   </style>
+  <!-- Google AdSense Code Setup -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -1205,6 +1225,20 @@
   </div>
 </section>
 
+<!-- Google AdSense Placeholder (Page Bottom) -->
+<div class="adsense-container" style="max-width: 1200px; margin: 40px auto 0 auto; padding: 15px 10%;">
+  <span class="adsense-label">スポンサーリンク</span>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="ZZZZZZZZZZ"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+  </script>
+</div>
+
 <footer id="sitemap" class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand">
@@ -1221,6 +1255,9 @@
         <li><a href="#mission">ミッション</a></li>
         <li><a href="#search-input">施設検索</a></li>
         <li class="mobile-only"><a href="#" id="pwa-install-btn">インストール</a></li>
+        <li><a href="terms.html">利用規約</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
       </ul>
 
     </div>
@@ -1257,6 +1294,20 @@
       <h3 id="modal-title">タイトル</h3>
     </div>
     <div id="modal-description">説明</div>
+    
+    <!-- Google AdSense Placeholder (Modal) -->
+    <div class="adsense-container">
+      <span class="adsense-label">スポンサーリンク</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+      </script>
+    </div>
   </div>
 </div>
 
