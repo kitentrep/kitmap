@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kit-kigyoubu.workers.dev/</loc>
+    <loc>https://kitmap.kit-kigyoubu.workers.dev/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kit-kigyoubu.workers.dev/terms.html</loc>
+    <loc>https://kitmap.kit-kigyoubu.workers.dev/terms.html</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://kit-kigyoubu.workers.dev/privacy.html</loc>
+    <loc>https://kitmap.kit-kigyoubu.workers.dev/privacy.html</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://kit-kigyoubu.workers.dev/contact.html</loc>
+    <loc>https://kitmap.kit-kigyoubu.workers.dev/contact.html</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
